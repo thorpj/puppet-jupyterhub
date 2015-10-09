@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "author": "debilski",
   "summary": "Installs Jupyterhub",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "source": "https://github.com/Debilski/puppet-jupyterhub",
   "project_page": "https://github.com/Debilski/puppet-jupyterhub",
   "issues_url": "https://github.com/Debilski/puppet-jupyterhub/issues",
