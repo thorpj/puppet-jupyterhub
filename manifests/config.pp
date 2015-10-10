@@ -25,6 +25,6 @@ class jupyterhub::config {
     owner   => 'root',
     content => template("${module_name}/jupyterhub.service.erb"),
   }
-  ~>
-  Exec[ systemctl_daemon-reload ]
+  #~>
+  #Exec[ systemctl_daemon-reload ]
 }
