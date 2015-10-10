@@ -14,6 +14,7 @@ class jupyterhub (
   $service_name           = $::jupyterhub::params::service_name,
   $jupyterhub_username    = $::jupyterhub::params::jupyterhub_username,
   $jupyterhub_dir         = $::jupyterhub::params::jupyterhub_dir,
+  $pyvenv                 = $::jupyterhub::params::pyvenv,
   $allowed_users          = $::jupyterhub::params::allowed_users,
 ) inherits ::jupyterhub::params {
 
