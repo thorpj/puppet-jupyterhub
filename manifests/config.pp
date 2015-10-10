@@ -12,7 +12,6 @@ class jupyterhub::config {
   file { '/etc/sudoers.d/sudospawner':
     owner   => $::jupyterhub::jupyterhub_username,
     content => template("${module_name}/jupyterhub_sudoers.erb"),
-    require => Class[ profile::sudo ],
   }
 
   file { "${::jupyterhub::jupyterhub_dir}/start_jupyterhub.sh":
