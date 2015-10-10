@@ -1,0 +1,10 @@
+[Unit]
+Description=Jupyterhub
+
+[Service]
+ExecStart=<%= $jupyterhub_dir %>/start_jupyterhub.sh
+WorkingDirectory=<%= $jupyterhub_dir %>
+User=<%= $jupyterhub_user %>
+
+[Install]
+WantedBy=multi-user.target

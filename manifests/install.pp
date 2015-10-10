@@ -4,45 +4,38 @@
 #
 class jupyterhub::install {
 
-  package { $::jupyterhub::package_name:
-    ensure => present,
-  }
-
   package { 'python3-venv': }
   ->
-  python::pyvenv { $jupyterhub_dir:
+  python::pyvenv { $::jupyterhub::jupyterhub_dir:
     ensure  => present,
     version => 'system',
-    owner   => $jupyterhub_username,
+    owner   => $::jupyterhub::jupyterhub_username,
   }
-
 
   python::pip { 'jupyter':
     pkgname    => 'jupyter',
-    virtualenv => $jupyterhub_dir,
-    owner      => $jupyterhub_username,
-    require    => python::pyvenv[ $jupyterhub_dir ],
+    virtualenv => $::jupyterhub::jupyterhub_dir,
+    owner      => $::jupyterhub::jupyterhub_username,
+    require    => python::pyvenv[ $::jupyterhub::jupyterhub_dir ],
   }
 
   python::pip { 'jupyterhub':
     pkgname    => 'jupyterhub',
-    virtualenv => $jupyterhub_dir,
-    owner      => $jupyterhub_username,
-    require    => python::pyvenv[ $jupyterhub_dir ],
+    virtualenv => $::jupyterhub::jupyterhub_dir,
+    owner      => $::jupyterhub::jupyterhub_username,
+    require    => python::pyvenv[ $::jupyterhub::jupyterhub_dir ],
   }
 
+  python::pip { 'sudospawner':
+    pkgname    => 'git+https://github.com/jupyter/sudospawner',
+    virtualenv => $::jupyterhub::jupyterhub_dir,
+    owner      => $::jupyterhub::jupyterhub_username,
+    require    => python::pyvenv[ $::jupyterhub::jupyterhub_dir ],
+  }
 
-    python::pip { 'sudospawner':
-      pkgname    => 'git+https://github.com/jupyter/sudospawner',
-      virtualenv => $jupyterhub_dir,
-      owner      => $jupyterhub_username,
-      require    => python::pyvenv[ $jupyterhub_dir ],
-    }
-
-    package { ['npm', 'nodejs-legacy']: }
-    ->
-    exec { '/usr/bin/npm install -g configurable-http-proxy':
-      unless => '/usr/bin/npm list -g configurable-http-proxy',
-    }
-
+  package { ['npm', 'nodejs-legacy']: }
+  ->
+  exec { '/usr/bin/npm install -g configurable-http-proxy':
+    unless => '/usr/bin/npm list -g configurable-http-proxy',
+  }
 }
