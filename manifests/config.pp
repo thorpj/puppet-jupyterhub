@@ -10,7 +10,7 @@ class jupyterhub::config {
   }
 
   file { '/etc/sudoers.d/sudospawner':
-    owner   => $::jupyterhub::jupyterhub_username,
+    owner   => root,
     content => template("${module_name}/jupyterhub_sudoers.erb"),
   }
 
