@@ -1,2 +1,2 @@
 c.JupyterHub.spawner_class='sudospawner.SudoSpawner'
-c.SudoSpawner.sudospawner_path = '<%= @jupyterhub_dir %>/pyvenv/bin/sudospawner'
+c.SudoSpawner.sudospawner_path = '<%= scope['jupyterhub::jupyterhub_dir'] %>/pyvenv/bin/sudospawner'

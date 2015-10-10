@@ -1,5 +1,5 @@
 # comma-separated whitelist of users that can spawn single-user servers
-Runas_Alias JUPYTER_USERS = <%= @allowed_users %>
+Runas_Alias JUPYTER_USERS = <%= scope['jupyterhub::allowed_users'] %>
 
 # the command(s) the Hub can run on behalf of the above users without needing a password
 # the exact path may differ, depending on how sudospawner was installed
@@ -7,4 +7,4 @@ Cmnd_Alias JUPYTER_CMD = /opt/jupyterhub/pyvenv/bin/sudospawner
 
 # actually give the Hub user permission to run the above command on behalf
 # of the above users without prompting for a password
-<%= @jupyterhub_user %> ALL=(JUPYTER_USERS) NOPASSWD: JUPYTER_CMD
+<%= scope['jupyterhub::jupyterhub_user'] %> ALL=(JUPYTER_USERS) NOPASSWD: JUPYTER_CMD
