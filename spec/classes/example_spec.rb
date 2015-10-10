@@ -17,7 +17,6 @@ describe 'jupyterhub' do
           it { is_expected.to contain_class('jupyterhub::service').that_subscribes_to('jupyterhub::config') }
 
           it { is_expected.to contain_service('jupyterhub') }
-          it { is_expected.to contain_package('jupyterhub').with_ensure('present') }
         end
       end
     end
@@ -32,7 +31,7 @@ describe 'jupyterhub' do
         }
       end
 
-      it { expect { is_expected.to contain_package('jupyterhub') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
+      it { expect { is_expected.to contain_service('jupyterhub') }.to raise_error(Puppet::Error, /Nexenta not supported/) }
     end
   end
 end
