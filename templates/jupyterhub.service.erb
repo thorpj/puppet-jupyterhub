@@ -4,7 +4,7 @@ Description=Jupyterhub
 [Service]
 ExecStart=<%= scope['jupyterhub::jupyterhub_dir'] %>/start_jupyterhub.sh
 WorkingDirectory=<%= scope['jupyterhub::jupyterhub_dir'] %>
-User=<%= scope['jupyterhub::jupyterhub_user'] %>
+User=<%= scope['jupyterhub::jupyterhub_username'] %>
 
 [Install]
 WantedBy=multi-user.target
