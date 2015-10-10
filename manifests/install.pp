@@ -4,6 +4,11 @@
 #
 class jupyterhub::install {
 
+  file { $::jupyterhub::jupyterhub_dir:
+    ensure => directory,
+    owner   => $::jupyterhub::jupyterhub_username,
+  }
+
   package { 'python3-venv': }
   ->
   python::pyvenv { $::jupyterhub::pyvenv:
