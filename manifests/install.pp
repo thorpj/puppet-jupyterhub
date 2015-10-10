@@ -16,21 +16,21 @@ class jupyterhub::install {
     pkgname    => 'jupyter',
     virtualenv => $::jupyterhub::jupyterhub_dir,
     owner      => $::jupyterhub::jupyterhub_username,
-    require    => python::pyvenv[ $::jupyterhub::jupyterhub_dir ],
+    require    => Python::Pyvenv[ $::jupyterhub::jupyterhub_dir ],
   }
 
   python::pip { 'jupyterhub':
     pkgname    => 'jupyterhub',
     virtualenv => $::jupyterhub::jupyterhub_dir,
     owner      => $::jupyterhub::jupyterhub_username,
-    require    => python::pyvenv[ $::jupyterhub::jupyterhub_dir ],
+    require    => Python::Pyvenv[ $::jupyterhub::jupyterhub_dir ],
   }
 
   python::pip { 'sudospawner':
     pkgname    => 'git+https://github.com/jupyter/sudospawner',
     virtualenv => $::jupyterhub::jupyterhub_dir,
     owner      => $::jupyterhub::jupyterhub_username,
-    require    => python::pyvenv[ $::jupyterhub::jupyterhub_dir ],
+    require    => Python::Pyvenv[ $::jupyterhub::jupyterhub_dir ],
   }
 
   package { ['npm', 'nodejs-legacy']: }
