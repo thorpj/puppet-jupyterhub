@@ -38,7 +38,7 @@ class jupyterhub::install {
     require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
   }
 
-  package { ['npm', 'nodejs-legacy']: }
+  ensure_packages(['npm', 'nodejs-legacy'])
   ->
   exec { '/usr/bin/npm install -g configurable-http-proxy':
     unless => '/usr/bin/npm list -g configurable-http-proxy',
