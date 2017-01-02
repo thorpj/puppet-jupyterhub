@@ -4,17 +4,18 @@
 #
 class jupyterhub::install {
 
+  ensure_packages(['python3-venv', 'npm', 'nodejs-legacy'])
+
   file { $::jupyterhub::jupyterhub_dir:
     ensure => directory,
     owner   => $::jupyterhub::jupyterhub_username,
   }
-  #->
-  #package { 'python3-venv': }
   ->
   python::pyvenv { $::jupyterhub::pyvenv:
     ensure  => present,
     version => 'system',
     owner   => $::jupyterhub::jupyterhub_username,
+    require => Package['python3-venv'],
   }
 
   python::pip { 'jupyter':
@@ -38,9 +39,8 @@ class jupyterhub::install {
     require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
   }
 
-  ensure_packages(['npm', 'nodejs-legacy'])
-  ->
   exec { '/usr/bin/npm install -g configurable-http-proxy':
     unless => '/usr/bin/npm list -g configurable-http-proxy',
+    require => [Package['npm'], Package['nodejs-legacy']],
   }
 }
