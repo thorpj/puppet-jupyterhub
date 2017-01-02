@@ -36,6 +36,13 @@ class jupyterhub::install {
     require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
   }
 
+  python::pip { 'oauthenticator':
+    pkgname    => 'oauthenticator',
+    virtualenv => "$::jupyterhub::pyvenv",
+    owner      => $::jupyterhub::jupyterhub_username,
+    require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+  }
+
   python::pip { 'sudospawner':
     pkgname    => 'git+https://github.com/jupyter/sudospawner',
     virtualenv => "$::jupyterhub::pyvenv",
