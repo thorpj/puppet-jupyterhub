@@ -2,7 +2,7 @@ c.JupyterHub.spawner_class='sudospawner.SudoSpawner'
 c.SudoSpawner.sudospawner_path = '<%= scope['jupyterhub::pyvenv'] %>/bin/sudospawner'
 
 c.JupyterHub.ip = '127.0.0.1'
-c.JupyterHub.port = '<%= scope['jupyterhub::port'] %>'
+c.JupyterHub.port = <%= scope['jupyterhub::port'] %>
 
 c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
 c.LocalAuthenticator.create_system_users = True
