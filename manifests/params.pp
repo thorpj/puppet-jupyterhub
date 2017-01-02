@@ -15,6 +15,7 @@ class jupyterhub::params {
       $oauth_callback_url     = undef
       $github_client_id       = undef
       $github_client_secret   = undef
+      $base_url               = '/'
     }
     'RedHat', 'Amazon': {
       $service_name           = 'jupyterhub'
@@ -26,6 +27,7 @@ class jupyterhub::params {
       $oauth_callback_url     = undef
       $github_client_id       = undef
       $github_client_secret   = undef
+      $base_url               = '/'
     }
     default: {
       fail("${::operatingsystem} not supported")

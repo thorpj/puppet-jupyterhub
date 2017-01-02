@@ -20,6 +20,7 @@ class jupyterhub (
   $oauth_callback_url     = $::jupyterhub::params::oauth_callback_url,
   $github_client_id       = $::jupyterhub::params::github_client_id,
   $github_client_secret   = $::jupyterhub::params::github_client_secret,
+  $base_url               = $::jupyterhub::params::base_url,
 ) inherits ::jupyterhub::params {
 
   # validate parameters here
