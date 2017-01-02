@@ -19,6 +19,7 @@ class jupyterhub::install {
     ensure  => present,
     version => 'system',
     owner   => $::jupyterhub::jupyterhub_username,
+    group   => $::jupyterhub::jupyterhub_group,
     require => Package['python3-venv'],
   }
 

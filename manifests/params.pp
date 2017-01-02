@@ -8,6 +8,7 @@ class jupyterhub::params {
     'Debian': {
       $service_name           = 'jupyterhub'
       $jupyterhub_username    = '_jupyter'
+      $jupyterhub_group       = 'jupyter'
       $jupyterhub_dir         = '/opt/jupyterhub'
       $pyvenv                 = '/opt/jupyterhub/pyvenv'
       $allowed_users          = undef
@@ -20,6 +21,7 @@ class jupyterhub::params {
     'RedHat', 'Amazon': {
       $service_name           = 'jupyterhub'
       $jupyterhub_username    = '_jupyter'
+      $jupyterhub_group       = 'jupyter'
       $jupyterhub_dir         = '/opt/jupyterhub'
       $pyvenv                 = '/opt/jupyterhub/pyvenv'
       $allowed_users          = undef

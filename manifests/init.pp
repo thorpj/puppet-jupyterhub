@@ -13,6 +13,7 @@
 class jupyterhub (
   $service_name           = $::jupyterhub::params::service_name,
   $jupyterhub_username    = $::jupyterhub::params::jupyterhub_username,
+  $jupyterhub_group       = $::jupyterhub::params::jupyterhub_group,
   $jupyterhub_dir         = $::jupyterhub::params::jupyterhub_dir,
   $pyvenv                 = $::jupyterhub::params::pyvenv,
   $allowed_users          = $::jupyterhub::params::allowed_users,
