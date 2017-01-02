@@ -1,2 +1,7 @@
 c.JupyterHub.spawner_class='sudospawner.SudoSpawner'
 c.SudoSpawner.sudospawner_path = '<%= scope['jupyterhub::pyvenv'] %>/bin/sudospawner'
+
+c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
+c.GitHubOAuthenticator.oauth_callback_url = '<%= scope['jupyterhub::oauth_callback_url'] %>'
+c.GitHubOAuthenticator.client_id = '<%= scope['jupyterhub::github_client_id'] %>'
+c.GitHubOAuthenticator.client_secret = '<%= scope['jupyterhub::github_client_secret'] %>'
