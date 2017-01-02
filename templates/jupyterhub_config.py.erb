@@ -4,7 +4,8 @@ c.SudoSpawner.sudospawner_path = '<%= scope['jupyterhub::pyvenv'] %>/bin/sudospa
 c.JupyterHub.ip = '127.0.0.1'
 c.JupyterHub.port = '<%= scope['jupyterhub::port'] %>'
 
-c.JupyterHub.authenticator_class = 'oauthenticator.GitHubOAuthenticator'
+c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
+c.LocalAuthenticator.create_system_users = True
 c.GitHubOAuthenticator.oauth_callback_url = '<%= scope['jupyterhub::oauth_callback_url'] %>'
 c.GitHubOAuthenticator.client_id = '<%= scope['jupyterhub::github_client_id'] %>'
 c.GitHubOAuthenticator.client_secret = '<%= scope['jupyterhub::github_client_secret'] %>'
