@@ -1,6 +1,8 @@
 c.JupyterHub.spawner_class='sudospawner.SudoSpawner'
 c.SudoSpawner.sudospawner_path = '<%= scope['jupyterhub::pyvenv'] %>/bin/sudospawner'
 
+c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
+
 c.JupyterHub.base_url = '<%= scope['jupyterhub::base_url'] %>'
 c.JupyterHub.ip = '127.0.0.1'
 c.JupyterHub.port = <%= scope['jupyterhub::port'] %>
