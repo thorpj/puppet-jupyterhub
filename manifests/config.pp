@@ -4,10 +4,6 @@
 #
 class jupyterhub::config {
 
-  user { "${::jupyterhub::jupyterhub_username}":
-    ensure => present,
-  }
-
   file { "${::jupyterhub::jupyterhub_dir}/jupyterhub_config.py":
     owner   => $::jupyterhub::jupyterhub_username,
     content => template("${module_name}/jupyterhub_config.py.erb"),

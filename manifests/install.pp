@@ -6,6 +6,10 @@ class jupyterhub::install {
 
   ensure_packages(['python3-venv', 'npm', 'nodejs-legacy'])
 
+  user { "${::jupyterhub::jupyterhub_username}":
+    ensure => present,
+  }
+  ~>
   file { $::jupyterhub::jupyterhub_dir:
     ensure => directory,
     owner   => $::jupyterhub::jupyterhub_username,
