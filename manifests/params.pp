@@ -11,6 +11,10 @@ class jupyterhub::params {
       $jupyterhub_dir         = '/opt/jupyterhub'
       $pyvenv                 = '/opt/jupyterhub/pyvenv'
       $allowed_users          = undef
+      $port                   = 7000
+      $oauth_callback_url     = undef
+      $github_client_id       = undef
+      $github_client_secret   = undef
     }
     'RedHat', 'Amazon': {
       $service_name           = 'jupyterhub'
@@ -18,6 +22,10 @@ class jupyterhub::params {
       $jupyterhub_dir         = '/opt/jupyterhub'
       $pyvenv                 = '/opt/jupyterhub/pyvenv'
       $allowed_users          = undef
+      $port                   = 7000
+      $oauth_callback_url     = undef
+      $github_client_id       = undef
+      $github_client_secret   = undef
     }
     default: {
       fail("${::operatingsystem} not supported")

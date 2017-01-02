@@ -16,6 +16,10 @@ class jupyterhub (
   $jupyterhub_dir         = $::jupyterhub::params::jupyterhub_dir,
   $pyvenv                 = $::jupyterhub::params::pyvenv,
   $allowed_users          = $::jupyterhub::params::allowed_users,
+  $port                   = $::jupyterhub::params::port,
+  $oauth_callback_url     = $::jupyterhub::params::oauth_callback_url,
+  $github_client_id       = $::jupyterhub::params::github_client_id,
+  $github_client_secret   = $::jupyterhub::params::github_client_secret,
 ) inherits ::jupyterhub::params {
 
   # validate parameters here
