@@ -17,16 +17,19 @@ class jupyterhub::nbviewer {
       refreshonly => true,
       require     => [Package['npm'], Package['nodejs-legacy']],
     } ~>
-    exec { 'invoke -p bower':
+    # we need to provide a dummy stdin so that invoke doesn't choke badly
+    exec { 'echo "bower" | invoke -p bower':
       path        => "${$::jupyterhub::pyvenv}/bin:/usr/bin",
       cwd         => $nbviewer_path,
       refreshonly => true,
+      provider    => shell,
       require     => Python::Pip['invoke'],
     } ~>
-    exec { 'invoke -p less':
+    exec { 'echo "less" | invoke -p less':
       path        => "${$::jupyterhub::pyvenv}/bin:/usr/bin",
       cwd         => $nbviewer_path,
       refreshonly => true,
+      provider    => shell,
     }
 
     python::pip { 'markdown':
