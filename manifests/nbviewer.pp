@@ -1,7 +1,8 @@
 class jupyterhub::nbviewer {
     ensure_packages(['libmemcached-dev', 'libcurl4-openssl-dev', 'pandoc',
                      'libevent-dev'])
-    $nbviewer_path = "${$::jupyterhub::pyvenv}/lib/python%{hiera('python::version')}/site-packages/nbviewer"
+    $python_version = hiera('python::version')
+    $nbviewer_path = "${$::jupyterhub::pyvenv}/lib/python$python_version/site-packages/nbviewer"
 
     python::pip { 'nbviewer':
       pkgname    => 'git+https://github.com/jupyter/nbviewer',
