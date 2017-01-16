@@ -55,4 +55,8 @@ class jupyterhub::install {
     unless => '/usr/bin/npm list -g configurable-http-proxy',
     require => [Package['npm'], Package['nodejs-legacy']],
   }
+
+  if $::jupyterhub::has_nbviewer {
+    class { '::jupyterhub::nbviewer': }
+  }
 }

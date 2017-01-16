@@ -12,3 +12,12 @@ c.LocalAuthenticator.create_system_users = True
 c.GitHubOAuthenticator.oauth_callback_url = '<%= scope['jupyterhub::oauth_callback_url'] %>'
 c.GitHubOAuthenticator.client_id = '<%= scope['jupyterhub::github_client_id'] %>'
 c.GitHubOAuthenticator.client_secret = '<%= scope['jupyterhub::github_client_secret'] %>'
+
+c.JupyterHub.services = [
+<%- if scope['jupyterhub::has_nbviewer'] -%>
+    {
+        'name': 'nbviewer',
+        'command': ['python', '-m', 'nbviewer'],
+    }
+<%- end -%>
+]
