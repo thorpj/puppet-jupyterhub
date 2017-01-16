@@ -11,10 +11,11 @@ class jupyterhub::nbviewer {
       require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
     } ~>
     exec { 'nbviewer-npm-install':
-      command     => 'npm install -g',
+      command     => '/usr/bin/npm install -g',
       timeout     => 900,  # 15 minutes
       path        => $nbviewer_path,
       refreshonly => true,
+      require => [Package['npm'], Package['nodejs-legacy']],
     } ~>
     exec { 'invoke bower':
       path        => $nbviewer_path,
