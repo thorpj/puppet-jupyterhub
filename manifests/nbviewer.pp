@@ -11,7 +11,7 @@ class jupyterhub::nbviewer {
       require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
     } ~>
     exec { 'nbviewer-npm-install':
-      command     => '/usr/bin/npm install -g',
+      command     => '/usr/bin/npm install',
       timeout     => 900,  # 15 minutes
       cwd         => $nbviewer_path,
       refreshonly => true,
