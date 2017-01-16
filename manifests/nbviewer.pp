@@ -34,12 +34,14 @@ class jupyterhub::nbviewer {
       require     => Python::Pip['pip-9.0.1'],
     } ~>
     file { "$nbviewer_lib/static/build":
-      ensure => directory,
-      source => "$nbviewer_src/nbviewer/static/build",
+      ensure  => directory,
+      recurse => true,
+      source  => "$nbviewer_src/nbviewer/static/build",
     } ~>
     file { "$nbviewer_lib/static/components":
-      ensure => directory,
-      source => "$nbviewer_src/nbviewer/static/components",
+      ensure  => directory,
+      recurse => true,
+      source  => "$nbviewer_src/nbviewer/static/components",
     }
 
     python::pip { 'markdown':
