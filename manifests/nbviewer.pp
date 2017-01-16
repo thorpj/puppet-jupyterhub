@@ -9,27 +9,12 @@ class jupyterhub::nbviewer {
       virtualenv => "$::jupyterhub::pyvenv",
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
-    } ~>
-    python::requirements { "$nbviewer_path/requirements.txt":
+    }
+
+    python::pip { 'markdown':
+      pkgname    => 'markdown',
       virtualenv => "$::jupyterhub::pyvenv",
       owner      => $::jupyterhub::jupyterhub_username,
-    }# ~>
-    #python::requirements { "$nbviewer_path/requirements-dev.txt":
-    #  virtualenv => "$::jupyterhub::pyvenv",
-    #  owner      => $::jupyterhub::jupyterhub_username,
-    #} ~>
-    #exec { 'nbviewer-npm-install':
-    #  command     => 'npm install -g',
-    #  timeout     => 900,  # 15 minutes
-    #  path        => $nbviewer_path,
-    #  refreshonly => true,
-    #} ~>
-    #exec { 'invoke bower':
-    #  path        => $nbviewer_path,
-    #  refreshonly => true,
-    #} ~>
-    #exec { 'invoke less':
-    #  path        => $nbviewer_path,
-    #  refreshonly => true,
-    #}
+      require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+    }
 }
