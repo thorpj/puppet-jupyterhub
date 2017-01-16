@@ -2,8 +2,7 @@ class jupyterhub::nbviewer {
     ensure_packages(['libmemcached-dev', 'libcurl4-openssl-dev', 'pandoc',
                      'libevent-dev'])
     $python_version = hiera('python::version')
-    $nbviewer_src = "${$::jupyterhub::pyvenv}/src/nbviewer"
-    $nbviewer_lib = "${$::jupyterhub::pyvenv}/lib/python$python_version/site-packages/nbviewer"
+    $nbviewer_path = "${$::jupyterhub::pyvenv}/src/nbviewer"
 
     python::pip { 'nbviewer':
       pkgname    => 'git+https://github.com/jupyter/nbviewer',
@@ -14,34 +13,24 @@ class jupyterhub::nbviewer {
     exec { 'nbviewer-npm-install':
       command     => '/usr/bin/npm install',
       timeout     => 900,  # 15 minutes
-      cwd         => $nbviewer_src,
+      cwd         => $nbviewer_path,
       refreshonly => true,
       require     => [Package['npm'], Package['nodejs-legacy']],
     } ~>
     # we need to provide a dummy stdin so that invoke doesn't choke badly
     exec { 'echo "bower" | invoke -p bower':
       path        => "${$::jupyterhub::pyvenv}/bin:/usr/bin",
-      cwd         => $nbviewer_src,
+      cwd         => $nbviewer_path,
       refreshonly => true,
       provider    => shell,
       require     => Python::Pip['invoke'],
     } ~>
     exec { 'echo "less" | invoke -p less':
       path        => "${$::jupyterhub::pyvenv}/bin:/usr/bin",
-      cwd         => $nbviewer_src,
+      cwd         => $nbviewer_path,
       refreshonly => true,
       provider    => shell,
       require     => Python::Pip['pip-9.0.1'],
-    } ~>
-    file { "$nbviewer_lib/static/build":
-      ensure  => directory,
-      recurse => true,
-      source  => "$nbviewer_src/nbviewer/static/build",
-    } ~>
-    file { "$nbviewer_lib/static/components":
-      ensure  => directory,
-      recurse => true,
-      source  => "$nbviewer_src/nbviewer/static/components",
     }
 
     python::pip { 'markdown':
