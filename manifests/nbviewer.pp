@@ -18,13 +18,13 @@ class jupyterhub::nbviewer {
       require     => [Package['npm'], Package['nodejs-legacy']],
     } ~>
     exec { 'invoke bower':
-      path        => "${$::jupyterhub::pyvenv}/bin",
+      path        => "${$::jupyterhub::pyvenv}/bin:/usr/bin",
       cwd         => $nbviewer_path,
       refreshonly => true,
       require     => Python::Pip['invoke'],
     } ~>
     exec { 'invoke less':
-      path        => "${$::jupyterhub::pyvenv}/bin",
+      path        => "${$::jupyterhub::pyvenv}/bin:/usr/bin",
       cwd         => $nbviewer_path,
       refreshonly => true,
     }
