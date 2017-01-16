@@ -17,4 +17,11 @@ class jupyterhub::nbviewer {
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
     }
+
+    python::pip { 'statsd':
+      pkgname    => 'statsd',
+      virtualenv => "$::jupyterhub::pyvenv",
+      owner      => $::jupyterhub::jupyterhub_username,
+      require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+    }
 }
