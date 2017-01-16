@@ -17,6 +17,7 @@ c.JupyterHub.services = [
 <%- if scope['jupyterhub::has_nbviewer'] -%>
     {
         'name': 'nbviewer',
+        'url': 'http://127.0.0.1:5000',
         'command': ['python', '-m', 'nbviewer'],
     }
 <%- end -%>
