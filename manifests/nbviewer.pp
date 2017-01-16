@@ -25,16 +25,16 @@ class jupyterhub::nbviewer {
     exec { 'nbviewer-npm-install':
       command     => 'npm install -g',
       timeout     => 900,  # 15 minutes
-      cwd         => $nbviewer_path,
+      path        => $nbviewer_path,
       refreshonly => true,
       subscribe   => Vcsrepo[$nbviewer_path],
     } ~>
     exec { 'invoke bower':
-      cwd         => $nbviewer_path,
+      path        => $nbviewer_path,
       refreshonly => true,
     } ~>
     exec { 'invoke less':
-      cwd         => $nbviewer_path,
+      path        => $nbviewer_path,
       refreshonly => true,
     }
 }
