@@ -5,18 +5,17 @@ class jupyterhub::nbviewer {
     $nbviewer_path = "${$::jupyterhub::pyvenv}/src/nbviewer"
 
     python::pip { 'nbviewer':
-      pkgname      => 'git+https://github.com/jupyter/nbviewer',
-      virtualenv   => "$::jupyterhub::pyvenv",
-      install_args => '-e',
-      owner        => $::jupyterhub::jupyterhub_username,
-      require      => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+      pkgname    => 'git+https://github.com/jupyter/nbviewer',
+      virtualenv => "$::jupyterhub::pyvenv",
+      owner      => $::jupyterhub::jupyterhub_username,
+      require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
     } ~>
     exec { 'nbviewer-npm-install':
       command     => '/usr/bin/npm install -g',
       timeout     => 900,  # 15 minutes
       cwd         => $nbviewer_path,
       refreshonly => true,
-      require => [Package['npm'], Package['nodejs-legacy']],
+      require     => [Package['npm'], Package['nodejs-legacy']],
     } ~>
     exec { 'invoke bower':
       path        => "${$::jupyterhub::pyvenv}/bin",
