@@ -13,17 +13,19 @@ class jupyterhub::nbviewer {
     exec { 'nbviewer-npm-install':
       command     => '/usr/bin/npm install -g',
       timeout     => 900,  # 15 minutes
-      path        => $nbviewer_path,
+      cwd         => $nbviewer_path,
       refreshonly => true,
       require => [Package['npm'], Package['nodejs-legacy']],
     } ~>
     exec { 'invoke bower':
-      path        => $nbviewer_path,
+      path        => "${$::jupyterhub::pyvenv}/bin",
+      cwd         => $nbviewer_path,
       refreshonly => true,
       require     => Python::Pip['invoke'],
     } ~>
     exec { 'invoke less':
-      path        => $nbviewer_path,
+      path        => "${$::jupyterhub::pyvenv}/bin",
+      cwd         => $nbviewer_path,
       refreshonly => true,
     }
 
