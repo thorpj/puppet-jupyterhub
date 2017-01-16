@@ -14,11 +14,11 @@ c.GitHubOAuthenticator.client_id = '<%= scope['jupyterhub::github_client_id'] %>
 c.GitHubOAuthenticator.client_secret = '<%= scope['jupyterhub::github_client_secret'] %>'
 
 c.JupyterHub.services = [
-<%- if scope['jupyterhub::has_nbviewer'] -%>
+<%- if scope['jupyterhub::nbviewer_files'] -%>
     {
         'name': 'nbviewer',
         'url': 'http://127.0.0.1:5000',
-        'command': ['python', '-m', 'nbviewer'],
+        'command': ['python', '-m', 'nbviewer', '--localfiles="<%= scope['jupyterhub::nbviewer_files'] %>"'],
     }
 <%- end -%>
 ]

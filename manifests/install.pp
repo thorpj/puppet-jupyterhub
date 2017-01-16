@@ -56,7 +56,7 @@ class jupyterhub::install {
     require => [Package['npm'], Package['nodejs-legacy']],
   }
 
-  if $::jupyterhub::has_nbviewer {
+  if $::jupyterhub::nbviewer_files {
     class { '::jupyterhub::nbviewer': }
   }
 }

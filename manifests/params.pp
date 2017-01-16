@@ -17,7 +17,7 @@ class jupyterhub::params {
       $github_client_id       = undef
       $github_client_secret   = undef
       $base_url               = '/'
-      $has_nbviewer           = false
+      $nbviewer_files         = undef
     }
     'RedHat', 'Amazon': {
       $service_name           = 'jupyterhub'
@@ -31,7 +31,7 @@ class jupyterhub::params {
       $github_client_id       = undef
       $github_client_secret   = undef
       $base_url               = '/'
-      $has_nbviewer           = false
+      $nbviewer_files         = undef
     }
     default: {
       fail("${::operatingsystem} not supported")

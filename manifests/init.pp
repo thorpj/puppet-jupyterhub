@@ -22,7 +22,7 @@ class jupyterhub (
   $github_client_id       = $::jupyterhub::params::github_client_id,
   $github_client_secret   = $::jupyterhub::params::github_client_secret,
   $base_url               = $::jupyterhub::params::base_url,
-  $has_nbviewer           = $::jupyterhub::params::has_nbviewer,
+  $nbviewer_files         = $::jupyterhub::params::nbviewer_files,
 ) inherits ::jupyterhub::params {
 
   # validate parameters here
