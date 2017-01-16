@@ -18,7 +18,7 @@ c.JupyterHub.services = [
     {
         'name': 'nbviewer',
         'url': 'http://127.0.0.1:5000',
-        'command': ['python', '-m', 'nbviewer', '--localfiles="<%= scope['jupyterhub::nbviewer_files'] %>"'],
+        'command': ['python', '-m', 'nbviewer', '--localfiles=<%= scope['jupyterhub::nbviewer_files'] %>'],
     }
 <%- end -%>
 ]
