@@ -30,6 +30,7 @@ class jupyterhub::nbviewer {
       cwd         => $nbviewer_path,
       refreshonly => true,
       provider    => shell,
+      require     => Python::Pip['pip-9.0.1'],
     }
 
     python::pip { 'markdown':
@@ -48,6 +49,14 @@ class jupyterhub::nbviewer {
 
     python::pip { 'invoke':
       pkgname    => 'invoke',
+      virtualenv => "$::jupyterhub::pyvenv",
+      owner      => $::jupyterhub::jupyterhub_username,
+      require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+    }
+
+    python::pip { 'pip-9.0.1':
+      pkgname    => 'pip',
+      ensure     => '9.0.1',
       virtualenv => "$::jupyterhub::pyvenv",
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
