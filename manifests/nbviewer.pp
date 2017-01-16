@@ -9,6 +9,21 @@ class jupyterhub::nbviewer {
       virtualenv => "$::jupyterhub::pyvenv",
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+    } ~>
+    exec { 'nbviewer-npm-install':
+      command     => 'npm install -g',
+      timeout     => 900,  # 15 minutes
+      path        => $nbviewer_path,
+      refreshonly => true,
+    } ~>
+    exec { 'invoke bower':
+      path        => $nbviewer_path,
+      refreshonly => true,
+      require     => Python::Pip['invoke'],
+    } ~>
+    exec { 'invoke less':
+      path        => $nbviewer_path,
+      refreshonly => true,
     }
 
     python::pip { 'markdown':
@@ -20,6 +35,13 @@ class jupyterhub::nbviewer {
 
     python::pip { 'statsd':
       pkgname    => 'statsd',
+      virtualenv => "$::jupyterhub::pyvenv",
+      owner      => $::jupyterhub::jupyterhub_username,
+      require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+    }
+
+    python::pip { 'invoke':
+      pkgname    => 'invoke',
       virtualenv => "$::jupyterhub::pyvenv",
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
