@@ -2,13 +2,14 @@ class jupyterhub::nbviewer {
     ensure_packages(['libmemcached-dev', 'libcurl4-openssl-dev', 'pandoc',
                      'libevent-dev'])
     $python_version = hiera('python::version')
-    $nbviewer_path = "${$::jupyterhub::pyvenv}/lib/python$python_version/site-packages/nbviewer"
+    $nbviewer_path = "${$::jupyterhub::pyvenv}/src/nbviewer"
 
     python::pip { 'nbviewer':
-      pkgname    => 'git+https://github.com/jupyter/nbviewer',
-      virtualenv => "$::jupyterhub::pyvenv",
-      owner      => $::jupyterhub::jupyterhub_username,
-      require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+      pkgname      => 'git+https://github.com/jupyter/nbviewer',
+      virtualenv   => "$::jupyterhub::pyvenv",
+      install_args => '-e',
+      owner        => $::jupyterhub::jupyterhub_username,
+      require      => Python::Pyvenv[ $::jupyterhub::pyvenv ],
     } ~>
     exec { 'nbviewer-npm-install':
       command     => '/usr/bin/npm install -g',
