@@ -3,8 +3,8 @@
 # This class is called from jupyterhub for install.
 #
 class jupyterhub::install {
-
-  ensure_packages(['python3-venv', 'npm', 'nodejs-legacy'])
+  class { 'nodejs': } # TODO: add puppet/nodejs as dependency
+  ensure_packages(['python3-venv'])
 
   user { "${::jupyterhub::jupyterhub_username}":
     ensure => present,
@@ -51,8 +51,8 @@ class jupyterhub::install {
     require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
   }
 
-  exec { '/usr/bin/npm install -g configurable-http-proxy':
-    unless => '/usr/bin/npm list -g configurable-http-proxy',
-    require => [Package['npm'], Package['nodejs-legacy']],
+  package { 'configurable-http-proxy':
+    ensure   => 'present',
+    provider => 'npm',
   }
 }
