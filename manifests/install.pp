@@ -3,7 +3,9 @@
 # This class is called from jupyterhub for install.
 #
 class jupyterhub::install {
-  class { 'nodejs': } # TODO: add puppet/nodejs as dependency
+  class { 'nodejs': # TODO: add puppet/nodejs as dependency
+    repo_url_suffix => '5.x',
+  }
   ensure_packages(['python3-venv'])
 
   user { "${::jupyterhub::jupyterhub_username}":
