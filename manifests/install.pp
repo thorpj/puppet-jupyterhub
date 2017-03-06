@@ -5,6 +5,8 @@
 class jupyterhub::install {
   class { 'nodejs': # TODO: add puppet/nodejs as dependency
     repo_url_suffix => '5.x',
+    legacy_debian_symlinks => true, # TODO: restrict to Debian
+    npm_package_ensure => true,
   }
   ensure_packages(['python3-venv'])
 
