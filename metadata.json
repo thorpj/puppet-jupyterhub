@@ -15,6 +15,10 @@
     {
       "name": "stankevich/python",
       "version_requirement": ">= 1.0.1 < 2.0.0"
+    },
+    {
+      "name": "puppet-nodejs",
+      "version_requirement": ">= 2.0.0 < 4.0.0"
     }
   ],
   "operatingsystem_support": [
