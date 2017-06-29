@@ -8,7 +8,13 @@ class jupyterhub::install {
     legacy_debian_symlinks => absent,
     npm_package_ensure => absent,
   }
-  ensure_packages(['python3-venv'])
+
+  if $::osfamily == 'Debian' {
+    ensure_packages(['python3-venv'])
+  }
+  if $::osfamily == 'RedHat' {
+    ensure_packages(['python34'])
+  }
 
   user { "${::jupyterhub::jupyterhub_username}":
     ensure => present,
