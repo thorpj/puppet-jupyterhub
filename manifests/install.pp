@@ -9,11 +9,10 @@ class jupyterhub::install
   class { '::nodejs':
     repo_url_suffix => '6.x',
   }
-  if $::osfamily == 'Debian' {
-    ensure_packages(['python3-venv'])
-  }
-  if $::osfamily == 'RedHat' {
-    ensure_packages(['python34'])
+  case $facts['os']['family'] {
+    'Debian': { ensure_packages(['python3-venv'], { before =>  Python::Pyvenv[ $::jupyterhub::pyvenv ]}) }
+    'RedHat': { ensure_packages(['python34'],  { before =>  Python::Pyvenv[ $::jupyterhub::pyvenv ]}) }
+    default: { ensure_packages(['python34'],  { before =>  Python::Pyvenv[ $::jupyterhub::pyvenv ]}) }
   }
 
   user { $::jupyterhub::jupyterhub_username:
