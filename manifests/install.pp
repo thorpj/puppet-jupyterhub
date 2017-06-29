@@ -5,14 +5,9 @@
 class jupyterhub::install
 (
   $use_nodesource = true,
-)
-{
-  include ::nodejs
-
-  if $use_nodesource {
-    class { '::nodejs':
-      repo_url_suffix => '6.x',
-    }
+){
+  class { '::nodejs':
+    repo_url_suffix => '6.x',
   }
   if $::osfamily == 'Debian' {
     ensure_packages(['python3-venv'])
