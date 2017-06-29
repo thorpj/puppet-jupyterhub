@@ -4,9 +4,7 @@
 #
 class jupyterhub::install {
   class { 'nodejs': # TODO: add puppet/nodejs as dependency
-    repo_url_suffix        => '5.x',
-    legacy_debian_symlinks => absent,
-    npm_package_ensure     => absent,
+    repo_url_suffix        => '6.x',
   }
 
   if $::osfamily == 'Debian' {
@@ -19,12 +17,12 @@ class jupyterhub::install {
   user { $::jupyterhub::jupyterhub_username:
     ensure => present,
   }
-  
+
   ~> file { $::jupyterhub::jupyterhub_dir:
     ensure => directory,
     owner  => $::jupyterhub::jupyterhub_username,
   }
-  
+
   -> python::pyvenv { $::jupyterhub::pyvenv:
     ensure  => present,
     version => 'system',
