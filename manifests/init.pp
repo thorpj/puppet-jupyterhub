@@ -26,8 +26,8 @@ class jupyterhub (
 
   # validate parameters here
 
-  class { '::jupyterhub::install': } ->
-  class { '::jupyterhub::config': } ~>
-  class { '::jupyterhub::service': } ->
-  Class['::jupyterhub']
+  class { '::jupyterhub::install': }
+  -> class { '::jupyterhub::config': }
+  ~> class { '::jupyterhub::service': }
+  -> Class['::jupyterhub']
 }

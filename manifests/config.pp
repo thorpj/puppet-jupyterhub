@@ -5,8 +5,8 @@
 class jupyterhub::config {
 
   file { '/var/log/jupyterhub.log':
-    owner   => $::jupyterhub::jupyterhub_username,
-    ensure  => present,
+    ensure => present,
+    owner  => $::jupyterhub::jupyterhub_username,
   }
 
   file { "${::jupyterhub::jupyterhub_dir}/jupyterhub_config.py":

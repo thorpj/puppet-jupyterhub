@@ -4,9 +4,9 @@
 #
 class jupyterhub::install {
   class { 'nodejs': # TODO: add puppet/nodejs as dependency
-    repo_url_suffix => '5.x',
+    repo_url_suffix        => '5.x',
     legacy_debian_symlinks => absent,
-    npm_package_ensure => absent,
+    npm_package_ensure     => absent,
   }
 
   if $::osfamily == 'Debian' {
@@ -16,16 +16,16 @@ class jupyterhub::install {
     ensure_packages(['python34'])
   }
 
-  user { "${::jupyterhub::jupyterhub_username}":
+  user { $::jupyterhub::jupyterhub_username:
     ensure => present,
   }
-  ~>
-  file { $::jupyterhub::jupyterhub_dir:
+  
+  ~> file { $::jupyterhub::jupyterhub_dir:
     ensure => directory,
-    owner   => $::jupyterhub::jupyterhub_username,
+    owner  => $::jupyterhub::jupyterhub_username,
   }
-  ->
-  python::pyvenv { $::jupyterhub::pyvenv:
+  
+  -> python::pyvenv { $::jupyterhub::pyvenv:
     ensure  => present,
     version => 'system',
     owner   => $::jupyterhub::jupyterhub_username,
@@ -35,28 +35,28 @@ class jupyterhub::install {
 
   python::pip { 'jupyter':
     pkgname    => 'jupyter',
-    virtualenv => "$::jupyterhub::pyvenv",
+    virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
     require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
   }
 
   python::pip { 'jupyterhub':
     pkgname    => 'jupyterhub',
-    virtualenv => "$::jupyterhub::pyvenv",
+    virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
     require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
   }
 
   python::pip { 'oauthenticator':
     pkgname    => 'oauthenticator',
-    virtualenv => "$::jupyterhub::pyvenv",
+    virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
     require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
   }
 
   python::pip { 'sudospawner':
     pkgname    => 'git+https://github.com/jupyter/sudospawner',
-    virtualenv => "$::jupyterhub::pyvenv",
+    virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
     require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
   }
