@@ -1,14 +1,30 @@
+<%- | Boolean $jupyterhub::sudospawner_enable,
+      Boolean $jupyterhub::oauth_enable,
+      Boolean $jupyterhub::oauth_git_enable,
+			Boolean $jupyterhub::oauth_create_users,
+   		Integer $jupyterhub::port,
+| -%>
+
+<% if $jupyterhub::sudospawner_enable { -%>
 c.JupyterHub.spawner_class='sudospawner.SudoSpawner'
-c.SudoSpawner.sudospawner_path = '<%= scope['jupyterhub::pyvenv'] %>/bin/sudospawner'
+c.SudoSpawner.sudospawner_path = '<%= $jupyterhub::pyvenv %>/bin/sudospawner'
+<% } -%>
 
 c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
 
-c.JupyterHub.base_url = '<%= scope['jupyterhub::base_url'] %>'
+c.JupyterHub.base_url = '<%= $jupyterhub::base_url %>'
 c.JupyterHub.ip = '127.0.0.1'
-c.JupyterHub.port = <%= scope['jupyterhub::port'] %>
+c.JupyterHub.port = <%= $jupyterhub::port %>
 
+
+<% if $jupyterhub::oauth_enable { -%>
 c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
+<% if $jupyterhub::oauth_create_users { -%>
 c.LocalAuthenticator.create_system_users = True
-c.GitHubOAuthenticator.oauth_callback_url = '<%= scope['jupyterhub::oauth_callback_url'] %>'
-c.GitHubOAuthenticator.client_id = '<%= scope['jupyterhub::github_client_id'] %>'
-c.GitHubOAuthenticator.client_secret = '<%= scope['jupyterhub::github_client_secret'] %>'
+<% } -%>
+c.GitHubOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
+<% if $jupyterhub::oauth_git_enable { -%>
+c.GitHubOAuthenticator.client_id = '<%= $jupyterhub::github_client_id %>'
+c.GitHubOAuthenticator.client_secret = '<%= $jupyterhub::github_client_secret %>'
+<% } -%>
+<% } -%>
