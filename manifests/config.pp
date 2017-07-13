@@ -11,7 +11,7 @@ class jupyterhub::config {
 
   file { "${::jupyterhub::jupyterhub_dir}/jupyterhub_config.py":
     owner   => $::jupyterhub::jupyterhub_username,
-    content => template("${module_name}/jupyterhub_config.py.erb"),
+    content => epp("${module_name}/jupyterhub_config.py.epp"),
   }
 
   if $::jupyterhub::sudospawner_enable {
