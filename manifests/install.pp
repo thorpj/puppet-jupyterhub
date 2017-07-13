@@ -10,9 +10,9 @@ class jupyterhub::install
     repo_url_suffix => '6.x',
   }
   case $facts['os']['family'] {
-    'Debian': { ensure_packages(['python3-venv'], { before =>  Python::Pyvenv[ $::jupyterhub::pyvenv ]}) }
-    'RedHat': { ensure_packages(['python34'],  { before =>  Python::Pyvenv[ $::jupyterhub::pyvenv ]}) }
-    default: { ensure_packages(['python34'],  { before =>  Python::Pyvenv[ $::jupyterhub::pyvenv ]}) }
+    'Debian': { ensure_packages(['python3-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
+    'RedHat': { ensure_packages(['python34'],  { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
+    default: { ensure_packages(['python34'],  { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
   }
 
   user { $::jupyterhub::jupyterhub_username:
@@ -29,35 +29,35 @@ class jupyterhub::install
     version => 'system',
     owner   => $::jupyterhub::jupyterhub_username,
     group   => $::jupyterhub::jupyterhub_group,
-    require => Package['python3-venv'],
+    #require => Package['python3-venv'],
   }
 
   python::pip { 'jupyter':
     pkgname    => 'jupyter',
     virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
-    require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
   }
 
   python::pip { 'jupyterhub':
     pkgname    => 'jupyterhub',
     virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
-    require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
   }
 
   python::pip { 'oauthenticator':
     pkgname    => 'oauthenticator',
     virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
-    require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
   }
 
   python::pip { 'sudospawner':
     pkgname    => 'git+https://github.com/jupyter/sudospawner',
     virtualenv => $::jupyterhub::pyvenv,
     owner      => $::jupyterhub::jupyterhub_username,
-    require    => Python::Pyvenv[ $::jupyterhub::pyvenv ],
+    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
   }
 
   package { 'configurable-http-proxy':
