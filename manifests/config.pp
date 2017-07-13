@@ -14,9 +14,12 @@ class jupyterhub::config {
     content => template("${module_name}/jupyterhub_config.py.erb"),
   }
 
-  file { '/etc/sudoers.d/sudospawner':
-    owner   => root,
-    content => template("${module_name}/jupyterhub_sudoers.erb"),
+  if $::jupyterhub::sudospawner_enable {
+
+    file { '/etc/sudoers.d/sudospawner':
+      owner   => root,
+      content => template("${module_name}/jupyterhub_sudoers.erb"),
+    }
   }
 
   file { "${::jupyterhub::jupyterhub_dir}/start_jupyterhub.sh":
@@ -31,4 +34,4 @@ class jupyterhub::config {
   }
   #~>
   #Exec[ systemctl_daemon-reload ]
-}
+  }

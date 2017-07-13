@@ -30,38 +30,51 @@ class jupyterhub::install
     owner   => $::jupyterhub::jupyterhub_username,
     group   => $::jupyterhub::jupyterhub_group,
     #require => Package['python3-venv'],
-  }
+    }
 
-  python::pip { 'jupyter':
-    pkgname    => 'jupyter',
-    virtualenv => $::jupyterhub::pyvenv,
-    owner      => $::jupyterhub::jupyterhub_username,
-    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
-  }
+    python::pip { 'jupyter':
+      pkgname    => 'jupyter',
+      virtualenv => $::jupyterhub::pyvenv,
+      owner      => $::jupyterhub::jupyterhub_username,
+      require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+    }
 
-  python::pip { 'jupyterhub':
-    pkgname    => 'jupyterhub',
-    virtualenv => $::jupyterhub::pyvenv,
-    owner      => $::jupyterhub::jupyterhub_username,
-    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
-  }
+    python::pip { 'jupyterhub':
+      pkgname    => 'jupyterhub',
+      virtualenv => $::jupyterhub::pyvenv,
+      owner      => $::jupyterhub::jupyterhub_username,
+      require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+    }
 
-  python::pip { 'oauthenticator':
-    pkgname    => 'oauthenticator',
-    virtualenv => $::jupyterhub::pyvenv,
-    owner      => $::jupyterhub::jupyterhub_username,
-    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
-  }
+    python::pip { 'oauthenticator':
+      pkgname    => 'oauthenticator',
+      virtualenv => $::jupyterhub::pyvenv,
+      owner      => $::jupyterhub::jupyterhub_username,
+      require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+    }
 
-  python::pip { 'sudospawner':
-    pkgname    => 'git+https://github.com/jupyter/sudospawner',
-    virtualenv => $::jupyterhub::pyvenv,
-    owner      => $::jupyterhub::jupyterhub_username,
-    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
-  }
+    if $::jupyterhub::sudospawner_enable {
 
-  package { 'configurable-http-proxy':
-    ensure   => 'present',
-    provider => 'npm',
-  }
+      python::pip { 'sudospawner':
+        pkgname    => 'git+https://github.com/jupyterhub/sudospawner',
+        virtualenv => $::jupyterhub::pyvenv,
+        owner      => $::jupyterhub::jupyterhub_username,
+        require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+      }
+    }
+
+    if $::jupyterhub::systemdspawner_enable {
+
+      python::pip { 'systemdspawner':
+        pkgname    => 'git+https://github.com/jupyterhub/systemdspawner',
+        virtualenv => $::jupyterhub::pyvenv,
+        owner      => $::jupyterhub::jupyterhub_username,
+        require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+      }
+    }
+
+    package { 'configurable-http-proxy':
+      ensure   => 'present',
+      provider => 'npm',
+    }
 }
