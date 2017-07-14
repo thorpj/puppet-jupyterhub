@@ -17,6 +17,12 @@ class jupyterhub::params {
       $github_client_id       = undef
       $github_client_secret   = undef
       $base_url               = '/'
+      $sudospawner_enable     = true
+      $systemdspawner_enable  = false
+      $systemdspawner::user_workingdir = "/home/{USERNAME}"
+      $systemdspawner::default_shell = undef
+      $systemdspawner::mem_limit = 'None'
+      $systemdspawner::cpu_limit = 'None'
     }
     'RedHat', 'Amazon': {
       $service_name           = 'jupyterhub'
@@ -30,6 +36,12 @@ class jupyterhub::params {
       $github_client_id       = undef
       $github_client_secret   = undef
       $base_url               = '/'
+      $sudospawner_enable     = true
+      $systemdspawner_enable  = false
+      $systemdspawner::user_workingdir = "/home/{USERNAME}"
+      $systemdspawner::default_shell = undef
+      $systemdspawner::mem_limit = 'None'
+      $systemdspawner::cpu_limit = 'None'
     }
     default: {
       fail("${::operatingsystem} not supported")
