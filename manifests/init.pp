@@ -19,6 +19,7 @@ class jupyterhub (
   $allowed_users                   = $::jupyterhub::params::allowed_users,
   $port                            = $::jupyterhub::params::port,
   $oauth_callback_url              = $::jupyterhub::params::oauth_callback_url,
+  $oauth_github_enable             = $::jupyterhub::params::oauth_github_enable,
   $github_client_id                = $::jupyterhub::params::github_client_id,
   $github_client_secret            = $::jupyterhub::params::github_client_secret,
   $base_url                        = $::jupyterhub::params::base_url,
@@ -28,6 +29,8 @@ class jupyterhub (
   $systemdspawner::default_shell   = $::jupyterhub::params::default_shell,
   $systemdspawner::mem_limit       = $::jupyterhub::params::mem_limit,
   $systemdspawner::cpu_limit       = $::jupyterhub::params::cpu_limit,
+  $systemdspawner::isolate_tmp     = $::jupyterhub::params::isolate_tmp,
+  $systemdspawner::isolate_devices = $::jupyterhub::params::isolate_devices,
 
 ) inherits ::jupyterhub::params {
 

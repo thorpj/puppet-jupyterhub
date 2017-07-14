@@ -21,8 +21,8 @@ c.JupyterHub.spawner_class='systemdspawner.SystemdSpawner'
 c.SystemdSpawner.user_workingdir = '<%= $jupyterhub::systemdspawner::user_workingdir %>'
 c.SystemdSpawner.default_shell = '<%= $jupyterhub::systemdspawner::default_shell %>'
 c.SystemdSpawner.unit_name_template = 'jupyter-{USERNAME}-singleuser'
-c.SystemdSpawner.isolate_tmp = True
-c.SystemdSpawner.isolate_devices = True
+c.SystemdSpawner.isolate_tmp = '<%= $jupyterhub::systemdspawner::isolate_tmp %>'
+c.SystemdSpawner.isolate_devices = '<%= $jupyterhub::systemdspawner::isolate_devices %>'
 <%# systemdspawner limits %>
 c.SystemdSpawner.mem_limit = '<%= $jupyterhub::systemdspawner::mem_limit %>'
 c.SystemdSpawner.cpu_limit = '<%= $jupyterhub::systemdspawner::cpu_limit %>'

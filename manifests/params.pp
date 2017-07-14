@@ -14,6 +14,7 @@ class jupyterhub::params {
       $allowed_users                   = undef
       $port                            = 7000
       $oauth_callback_url              = undef
+      $oauth_github_enable             = false
       $github_client_id                = undef
       $github_client_secret            = undef
       $base_url                        = '/'
@@ -23,6 +24,8 @@ class jupyterhub::params {
       $systemdspawner::default_shell   = undef
       $systemdspawner::mem_limit       = 'None'
       $systemdspawner::cpu_limit       = 'None'
+      $systemdspawner::isolate_tmp     = false
+      $systemdspawner::isolate_devices = false
     }
     'RedHat', 'Amazon': {
       $service_name                    = 'jupyterhub'
@@ -33,6 +36,7 @@ class jupyterhub::params {
       $allowed_users                   = undef
       $port                            = 7000
       $oauth_callback_url              = undef
+      $oauth_github_enable             = false
       $github_client_id                = undef
       $github_client_secret            = undef
       $base_url                        = '/'
@@ -42,6 +46,8 @@ class jupyterhub::params {
       $systemdspawner::default_shell   = undef
       $systemdspawner::mem_limit       = 'None'
       $systemdspawner::cpu_limit       = 'None'
+      $systemdspawner::isolate_tmp     = false
+      $systemdspawner::isolate_devices = false
     }
     default: {
       fail("${::operatingsystem} not supported")
