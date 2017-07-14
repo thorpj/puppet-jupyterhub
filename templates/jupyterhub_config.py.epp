@@ -1,9 +1,11 @@
 <%# This file is managed by Puppet - manual changes will be overwritten. %>
 <%- | Boolean $jupyterhub::sudospawner_enable,
+      Boolean $jupyterhub::systemdspawner_enable,
       Boolean $jupyterhub::oauth_enable,
       Boolean $jupyterhub::oauth_git_enable,
       Boolean $jupyterhub::oauth_create_users,
       Integer $jupyterhub::port,
+      Integer $jupyterhub::systemdspawner::mem_limit,
 | -%>
 
 
@@ -16,7 +18,7 @@ c.SudoSpawner.sudospawner_path = '<%= $jupyterhub::pyvenv %>/bin/sudospawner'
 <% if $jupyterhub::systemdspawner_enable { -%>
 <%# systemdspawner %>
 c.JupyterHub.spawner_class='systemdspawner.SystemdSpawner'
-c.SystemdSpawner.user_workingdir = '<%= $jupyterhub::systemdspawner::homedir %>'
+c.SystemdSpawner.user_workingdir = '<%= $jupyterhub::systemdspawner::user_workingdir %>'
 c.SystemdSpawner.default_shell = '<%= $jupyterhub::systemdspawner::default_shell %>'
 c.SystemdSpawner.unit_name_template = 'jupyter-{USERNAME}-singleuser'
 c.SystemdSpawner.isolate_tmp = True
@@ -32,12 +34,13 @@ c.JupyterHub.base_url = '<%= $jupyterhub::base_url %>'
 c.JupyterHub.ip = '127.0.0.1'
 c.JupyterHub.port = <%= $jupyterhub::port %>
 
-
 <% if $jupyterhub::oauth_enable { -%>
+<%# oauth %>
 c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
 <% if $jupyterhub::oauth_create_users { -%>
 c.LocalAuthenticator.create_system_users = True
 <% } -%>
+
 c.GitHubOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
 <% if $jupyterhub::oauth_git_enable { -%>
 c.GitHubOAuthenticator.client_id = '<%= $jupyterhub::github_client_id %>'
