@@ -1,13 +1,29 @@
+<%# This file is managed by Puppet - manual changes will be overwritten. %>
 <%- | Boolean $jupyterhub::sudospawner_enable,
       Boolean $jupyterhub::oauth_enable,
       Boolean $jupyterhub::oauth_git_enable,
-			Boolean $jupyterhub::oauth_create_users,
-   		Integer $jupyterhub::port,
+      Boolean $jupyterhub::oauth_create_users,
+      Integer $jupyterhub::port,
 | -%>
 
+
 <% if $jupyterhub::sudospawner_enable { -%>
+<%# sudospawner %>
 c.JupyterHub.spawner_class='sudospawner.SudoSpawner'
 c.SudoSpawner.sudospawner_path = '<%= $jupyterhub::pyvenv %>/bin/sudospawner'
+<% } -%>
+
+<% if $jupyterhub::systemdspawner_enable { -%>
+<%# systemdspawner %>
+c.JupyterHub.spawner_class='systemdspawner.SystemdSpawner'
+c.SystemdSpawner.user_workingdir = '<%= $jupyterhub::systemdspawner::homedir %>'
+c.SystemdSpawner.default_shell = '<%= $jupyterhub::systemdspawner::default_shell %>'
+c.SystemdSpawner.unit_name_template = 'jupyter-{USERNAME}-singleuser'
+c.SystemdSpawner.isolate_tmp = True
+c.SystemdSpawner.isolate_devices = True
+<%# systemdspawner limits %>
+c.SystemdSpawner.mem_limit = '<%= $jupyterhub::systemdspawner::mem_limit %>'
+c.SystemdSpawner.cpu_limit = '<%= $jupyterhub::systemdspawner::cpu_limit %>'
 <% } -%>
 
 c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
