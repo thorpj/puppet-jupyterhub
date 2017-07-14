@@ -35,15 +35,23 @@ c.JupyterHub.ip = '127.0.0.1'
 c.JupyterHub.port = <%= $jupyterhub::port %>
 
 <% if $jupyterhub::oauth_enable { -%>
-<%# oauth %>
-c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
+<%# my oauth %>
+c.JupyterHub.authenticator_class = 'oauthenticator.MyOAuthenticator'
+c.MyOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
+c.MyOAuthenticator.client_id = '<%= $jupyterhub::oauth_client_id %>'
+c.MyOAuthenticator.client_secret = '<%= $jupyterhub::oauth_client_secret %>'
 <% if $jupyterhub::oauth_create_users { -%>
 c.LocalAuthenticator.create_system_users = True
 <% } -%>
+<% } -%>
 
+<% if $jupyterhub::oauth_github_enable { -%>
+<%# github oauth %>
+c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
 c.GitHubOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
-<% if $jupyterhub::oauth_git_enable { -%>
 c.GitHubOAuthenticator.client_id = '<%= $jupyterhub::github_client_id %>'
 c.GitHubOAuthenticator.client_secret = '<%= $jupyterhub::github_client_secret %>'
+<% if $jupyterhub::oauth_create_users { -%>
+c.LocalAuthenticator.create_system_users = True
 <% } -%>
 <% } -%>
