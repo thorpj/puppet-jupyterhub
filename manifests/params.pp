@@ -6,42 +6,42 @@
 class jupyterhub::params {
   case $::osfamily {
     'Debian': {
-      $service_name           = 'jupyterhub'
-      $jupyterhub_username    = '_jupyter'
-      $jupyterhub_group       = 'jupyter'
-      $jupyterhub_dir         = '/opt/jupyterhub'
-      $pyvenv                 = '/opt/jupyterhub/pyvenv'
-      $allowed_users          = undef
-      $port                   = 7000
-      $oauth_callback_url     = undef
-      $github_client_id       = undef
-      $github_client_secret   = undef
-      $base_url               = '/'
-      $sudospawner_enable     = true
-      $systemdspawner_enable  = false
-      $systemdspawner::user_workingdir = "/home/{USERNAME}"
-      $systemdspawner::default_shell = undef
-      $systemdspawner::mem_limit = 'None'
-      $systemdspawner::cpu_limit = 'None'
+      $service_name                    = 'jupyterhub'
+      $jupyterhub_username             = '_jupyter'
+      $jupyterhub_group                = 'jupyter'
+      $jupyterhub_dir                  = '/opt/jupyterhub'
+      $pyvenv                          = '/opt/jupyterhub/pyvenv'
+      $allowed_users                   = undef
+      $port                            = 7000
+      $oauth_callback_url              = undef
+      $github_client_id                = undef
+      $github_client_secret            = undef
+      $base_url                        = '/'
+      $sudospawner_enable              = true
+      $systemdspawner_enable           = false
+      $systemdspawner::user_workingdir = '/home/{USERNAME}'
+      $systemdspawner::default_shell   = undef
+      $systemdspawner::mem_limit       = 'None'
+      $systemdspawner::cpu_limit       = 'None'
     }
     'RedHat', 'Amazon': {
-      $service_name           = 'jupyterhub'
-      $jupyterhub_username    = '_jupyter'
-      $jupyterhub_group       = 'jupyter'
-      $jupyterhub_dir         = '/opt/jupyterhub'
-      $pyvenv                 = '/opt/jupyterhub/pyvenv'
-      $allowed_users          = undef
-      $port                   = 7000
-      $oauth_callback_url     = undef
-      $github_client_id       = undef
-      $github_client_secret   = undef
-      $base_url               = '/'
-      $sudospawner_enable     = true
-      $systemdspawner_enable  = false
-      $systemdspawner::user_workingdir = "/home/{USERNAME}"
-      $systemdspawner::default_shell = undef
-      $systemdspawner::mem_limit = 'None'
-      $systemdspawner::cpu_limit = 'None'
+      $service_name                    = 'jupyterhub'
+      $jupyterhub_username             = '_jupyter'
+      $jupyterhub_group                = 'jupyter'
+      $jupyterhub_dir                  = '/opt/jupyterhub'
+      $pyvenv                          = '/opt/jupyterhub/pyvenv'
+      $allowed_users                   = undef
+      $port                            = 7000
+      $oauth_callback_url              = undef
+      $github_client_id                = undef
+      $github_client_secret            = undef
+      $base_url                        = '/'
+      $sudospawner_enable              = true
+      $systemdspawner_enable           = false
+      $systemdspawner::user_workingdir = '/home/{USERNAME}'
+      $systemdspawner::default_shell   = undef
+      $systemdspawner::mem_limit       = 'None'
+      $systemdspawner::cpu_limit       = 'None'
     }
     default: {
       fail("${::operatingsystem} not supported")
