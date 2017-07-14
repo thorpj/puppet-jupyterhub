@@ -49,8 +49,8 @@ c.LocalAuthenticator.create_system_users = True
 <%# github oauth %>
 c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
 c.GitHubOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
-c.GitHubOAuthenticator.client_id = '<%= $jupyterhub::github_client_id %>'
-c.GitHubOAuthenticator.client_secret = '<%= $jupyterhub::github_client_secret %>'
+c.GitHubOAuthenticator.client_id = '<%= $jupyterhub::oauth::github_client_id %>'
+c.GitHubOAuthenticator.client_secret = '<%= $jupyterhub::oauth::github_client_secret %>'
 <% if $jupyterhub::oauth_create_users { -%>
 c.LocalAuthenticator.create_system_users = True
 <% } -%>
