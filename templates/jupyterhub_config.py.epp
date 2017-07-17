@@ -5,7 +5,7 @@
       Boolean $jupyterhub::oauth_git_enable,
       Boolean $jupyterhub::oauth_create_users,
       Integer $jupyterhub::port,
-      Integer $jupyterhub::systemdspawner::mem_limit,
+      Integer $jupyterhub::systemdspawner_mem_limit,
 | -%>
 
 
@@ -18,14 +18,14 @@ c.SudoSpawner.sudospawner_path = '<%= $jupyterhub::pyvenv %>/bin/sudospawner'
 <% if $jupyterhub::systemdspawner_enable { -%>
 <%# systemdspawner %>
 c.JupyterHub.spawner_class='systemdspawner.SystemdSpawner'
-c.SystemdSpawner.user_workingdir = '<%= $jupyterhub::systemdspawner::user_workingdir %>'
-c.SystemdSpawner.default_shell = '<%= $jupyterhub::systemdspawner::default_shell %>'
+c.SystemdSpawner.user_workingdir = '<%= $jupyterhub::systemdspawner_user_workingdir %>'
+c.SystemdSpawner.default_shell = '<%= $jupyterhub::systemdspawnerd_efault_shell %>'
 c.SystemdSpawner.unit_name_template = 'jupyter-{USERNAME}-singleuser'
-c.SystemdSpawner.isolate_tmp = '<%= $jupyterhub::systemdspawner::isolate_tmp %>'
-c.SystemdSpawner.isolate_devices = '<%= $jupyterhub::systemdspawner::isolate_devices %>'
+c.SystemdSpawner.isolate_tmp = '<%= $jupyterhub::systemdspawner_isolate_tmp %>'
+c.SystemdSpawner.isolate_devices = '<%= $jupyterhub::systemdspawner_isolate_devices %>'
 <%# systemdspawner limits %>
-c.SystemdSpawner.mem_limit = '<%= $jupyterhub::systemdspawner::mem_limit %>'
-c.SystemdSpawner.cpu_limit = '<%= $jupyterhub::systemdspawner::cpu_limit %>'
+c.SystemdSpawner.mem_limit = '<%= $jupyterhub::systemdspawner_mem_limit %>'
+c.SystemdSpawner.cpu_limit = '<%= $jupyterhub::systemdspawner_cpu_limit %>'
 <% } -%>
 
 c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
@@ -49,8 +49,8 @@ c.LocalAuthenticator.create_system_users = True
 <%# github oauth %>
 c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
 c.GitHubOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
-c.GitHubOAuthenticator.client_id = '<%= $jupyterhub::oauth::github_client_id %>'
-c.GitHubOAuthenticator.client_secret = '<%= $jupyterhub::oauth::github_client_secret %>'
+c.GitHubOAuthenticator.client_id = '<%= $jupyterhub::oauth_github_client_id %>'
+c.GitHubOAuthenticator.client_secret = '<%= $jupyterhub::oauth_github_client_secret %>'
 <% if $jupyterhub::oauth_create_users { -%>
 c.LocalAuthenticator.create_system_users = True
 <% } -%>

@@ -18,17 +18,17 @@ class jupyterhub::params {
       $oauth_client_secret             = undef
       $oauth_create_system_users       = false
       $oauth_github_enable             = false
-      $oauth::github_client_id         = undef
-      $oauth::github_client_secret     = undef
+      $oauth_github_client_id         = undef
+      $oauth_github_client_secret     = undef
       $base_url                        = '/'
       $sudospawner_enable              = true
       $systemdspawner_enable           = false
-      $systemdspawner::user_workingdir = '/home/{USERNAME}'
-      $systemdspawner::default_shell   = undef
-      $systemdspawner::mem_limit       = 'None'
-      $systemdspawner::cpu_limit       = 'None'
-      $systemdspawner::isolate_tmp     = false
-      $systemdspawner::isolate_devices = false
+      $systemdspawner_user_workingdir = '/home/{USERNAME}'
+      $systemdspawner_default_shell   = undef
+      $systemdspawner_mem_limit       = 'None'
+      $systemdspawner_cpu_limit       = 'None'
+      $systemdspawner_isolate_tmp     = false
+      $systemdspawner_isolate_devices = false
     }
     'RedHat', 'Amazon': {
       $service_name                    = 'jupyterhub'
@@ -43,17 +43,17 @@ class jupyterhub::params {
       $oauth_client_secret             = undef
       $oauth_create_system_users       = false
       $oauth_github_enable             = false
-      $oauth::github_client_id         = undef
-      $oauth::github_client_secret     = undef
+      $oauth_github_client_id         = undef
+      $oauth_github_client_secret     = undef
       $base_url                        = '/'
       $sudospawner_enable              = true
       $systemdspawner_enable           = false
-      $systemdspawner::user_workingdir = '/home/{USERNAME}'
-      $systemdspawner::default_shell   = undef
-      $systemdspawner::mem_limit       = 'None'
-      $systemdspawner::cpu_limit       = 'None'
-      $systemdspawner::isolate_tmp     = false
-      $systemdspawner::isolate_devices = false
+      $systemdspawner_user_workingdir = '/home/{USERNAME}'
+      $systemdspawner_default_shell   = undef
+      $systemdspawner_mem_limit       = 'None'
+      $systemdspawner_cpu_limit       = 'None'
+      $systemdspawner_isolate_tmp     = false
+      $systemdspawner_isolate_devices = false
     }
     default: {
       fail("${::operatingsystem} not supported")
