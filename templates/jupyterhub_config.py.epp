@@ -8,8 +8,8 @@ c.JupyterHub.port = <%= $jupyterhub::port %>
 
 <% if $jupyterhub::ssl_enable { -%>
 # SSL encryption 
-c.JupyterHub.ssl_key = '/path/to/my.key'
-c.JupyterHub.ssl_cert = '/path/to/my.cert'
+c.JupyterHub.ssl_key = '<%= $jupyterhub::ssl_key %>'
+c.JupyterHub.ssl_cert = '<%= $jupyterhub::ssl_cert %>'
 <% } -%>
 
 <% if $jupyterhub::cookie_secret_file { -%>
@@ -27,7 +27,7 @@ c.SudoSpawner.sudospawner_path = '<%= $jupyterhub::pyvenv %>/bin/sudospawner'
 # systemdspawner 
 c.JupyterHub.spawner_class='systemdspawner.SystemdSpawner'
 c.SystemdSpawner.user_workingdir = '<%= $jupyterhub::systemdspawner_user_workingdir %>'
-c.SystemdSpawner.default_shell = '<%= $jupyterhub::systemdspawnerd_efault_shell %>'
+c.SystemdSpawner.default_shell = '<%= $jupyterhub::systemdspawner_default_shell %>'
 c.SystemdSpawner.unit_name_template = 'jupyter-{USERNAME}-singleuser'
 c.SystemdSpawner.isolate_tmp = '<%= $jupyterhub::systemdspawner_isolate_tmp %>'
 c.SystemdSpawner.isolate_devices = '<%= $jupyterhub::systemdspawner_isolate_devices %>'
