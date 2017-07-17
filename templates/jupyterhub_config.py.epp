@@ -1,13 +1,4 @@
 <%# This file is managed by Puppet - manual changes will be overwritten. %>
-<%- | Boolean $jupyterhub::sudospawner_enable,
-      Boolean $jupyterhub::systemdspawner_enable,
-      Boolean $jupyterhub::oauth_enable,
-      Boolean $jupyterhub::oauth_git_enable,
-      Boolean $jupyterhub::oauth_create_users,
-      Integer $jupyterhub::port,
-      Integer $jupyterhub::systemdspawner_mem_limit,
-| -%>
-
 
 <% if $jupyterhub::sudospawner_enable { -%>
 <%# sudospawner %>
