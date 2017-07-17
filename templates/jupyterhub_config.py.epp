@@ -1,32 +1,43 @@
-<%# This file is managed by Puppet - manual changes will be overwritten. %>
+# This file is managed by Puppet - manual changes will be overwritten. %>
+
+# basic config 
+c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
+c.JupyterHub.base_url = '<%= $jupyterhub::base_url %>'
+c.JupyterHub.ip = '127.0.0.1'
+c.JupyterHub.port = <%= $jupyterhub::port %>
+
+<% if $jupyterhub::ssl_enable { -%>
+# SSL encryption 
+c.JupyterHub.ssl_key = '/path/to/my.key'
+c.JupyterHub.ssl_cert = '/path/to/my.cert'
+<% } -%>
+
+<% if $jupyterhub::cookie_secret_file { -%>
+# cookiesecret 
+c.JupyterHub.cookie_secret_file = '<%= $jupyterhub::cookie_secret_file %>'
+<% } -%>
 
 <% if $jupyterhub::sudospawner_enable { -%>
-<%# sudospawner %>
+# sudospawner 
 c.JupyterHub.spawner_class='sudospawner.SudoSpawner'
 c.SudoSpawner.sudospawner_path = '<%= $jupyterhub::pyvenv %>/bin/sudospawner'
 <% } -%>
 
 <% if $jupyterhub::systemdspawner_enable { -%>
-<%# systemdspawner %>
+# systemdspawner 
 c.JupyterHub.spawner_class='systemdspawner.SystemdSpawner'
 c.SystemdSpawner.user_workingdir = '<%= $jupyterhub::systemdspawner_user_workingdir %>'
 c.SystemdSpawner.default_shell = '<%= $jupyterhub::systemdspawnerd_efault_shell %>'
 c.SystemdSpawner.unit_name_template = 'jupyter-{USERNAME}-singleuser'
 c.SystemdSpawner.isolate_tmp = '<%= $jupyterhub::systemdspawner_isolate_tmp %>'
 c.SystemdSpawner.isolate_devices = '<%= $jupyterhub::systemdspawner_isolate_devices %>'
-<%# systemdspawner limits %>
+## systemdspawner limits 
 c.SystemdSpawner.mem_limit = '<%= $jupyterhub::systemdspawner_mem_limit %>'
 c.SystemdSpawner.cpu_limit = '<%= $jupyterhub::systemdspawner_cpu_limit %>'
 <% } -%>
 
-c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
-
-c.JupyterHub.base_url = '<%= $jupyterhub::base_url %>'
-c.JupyterHub.ip = '127.0.0.1'
-c.JupyterHub.port = <%= $jupyterhub::port %>
-
 <% if $jupyterhub::oauth_enable { -%>
-<%# my oauth %>
+# my oauth 
 c.JupyterHub.authenticator_class = 'oauthenticator.MyOAuthenticator'
 c.MyOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
 c.MyOAuthenticator.client_id = '<%= $jupyterhub::oauth_client_id %>'
@@ -37,7 +48,7 @@ c.LocalAuthenticator.create_system_users = True
 <% } -%>
 
 <% if $jupyterhub::oauth_github_enable { -%>
-<%# github oauth %>
+# github oauth 
 c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
 c.GitHubOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
 c.GitHubOAuthenticator.client_id = '<%= $jupyterhub::oauth_github_client_id %>'
