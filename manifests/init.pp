@@ -42,7 +42,7 @@ class jupyterhub (
   Optional[Boolean] $oauth_github_enable,
   Optional[Integer] $oauth_github_client_id,
   Optional[Integer] $oauth_github_client_secret,
-  Stdlid::Absolutepath $base_url,
+  Stdlib::Absolutepath $base_url,
   Optional[Boolean] $sudospawner_enable,
   Optional[Boolean] $systemdspawner_enable,
   Optional[Stdlib::Absolutepath] $systemdspawner_user_workingdir,
