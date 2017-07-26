@@ -2,10 +2,10 @@
 jupyterhub::service_name: 'jupyterhub'
 jupyterhub::jupyterhub_username: 'jupyter'
 jupyterhub::jupyterhub_group: 'jupyter'
-jupyterhub::jupyterhub_dir: '/opt/jupyterhub'
-jupyterhub::pyvenv: '/opt/jupyterhub/pyvenv'
+jupyterhub::jupyterhub_dir: /opt/jupyterhub
+jupyterhub::pyvenv: /opt/jupyterhub/pyvenv
 jupyterhub::allowed_users: undef
-jupyterhub::port: '7000'
+jupyterhub::port: 7000
 jupyterhub::oauth_callback_url: undef
 jupyterhub::oauth_client_id: undef
 jupyterhub::oauth_client_secret: undef
@@ -13,10 +13,10 @@ jupyterhub::oauth_create_system_users: false
 jupyterhub::oauth_github_enable: false
 jupyterhub::oauth_github_client_id: undef
 jupyterhub::oauth_github_client_secret: undef
-jupyterhub::base_url: '/'
+jupyterhub::base_url: /
 jupyterhub::sudospawner_enable: true
 jupyterhub::systemdspawner_enable: false
-jupyterhub::systemdspawner_user_workingdir: '/home/{USERNAME}'
+jupyterhub::systemdspawner_user_workingdir: /home/{USERNAME}
 jupyterhub::systemdspawner_default_shell: undef
 jupyterhub::systemdspawner_mem_limit: 'None'
 jupyterhub::systemdspawner_cpu_limit: 'None'
