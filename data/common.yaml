@@ -15,6 +15,7 @@ jupyterhub::oauth_github_client_id: ~
 jupyterhub::oauth_github_client_secret: ~
 jupyterhub::base_url: /
 jupyterhub::sudospawner_enable: true
+jupyterhub::sudospawner_allowed_users: ~
 jupyterhub::systemdspawner_enable: false
 jupyterhub::systemdspawner_user_workingdir: /home/{USERNAME}
 jupyterhub::systemdspawner_default_shell: ~
