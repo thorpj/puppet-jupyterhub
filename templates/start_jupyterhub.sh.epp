@@ -1,0 +1,3 @@
+#!/bin/bash
+. <%= $jupyterhub::pyvenv %>/bin/activate
+<%= $jupyterhub::pyvenv %>/bin/jupyterhub --config jupyterhub_config.py
