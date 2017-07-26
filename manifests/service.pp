@@ -3,7 +3,7 @@
 # This class is meant to be called from jupyterhub.
 # It ensure the service is running.
 #
-class jupyterhub::service {
+class jupyterhub::service inherits jupyterhub {
 
   service { $::jupyterhub::service_name:
     ensure     => running,

@@ -2,10 +2,7 @@
 #
 # This class is called from jupyterhub for install.
 #
-class jupyterhub::install
-(
-  $use_nodesource = true,
-){
+class jupyterhub::install inherits jupyterhub {
   class { '::nodejs':
     repo_url_suffix => '6.x',
   }
