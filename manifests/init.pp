@@ -30,6 +30,7 @@
 #   e.g. "Specify one or more upstream ntp servers as an array."
 #
 class jupyterhub (
+  # Default values are in jupyterhub/data
   String $service_name,
   String $jupyterhub_username,
   String $jupyterhub_group,
