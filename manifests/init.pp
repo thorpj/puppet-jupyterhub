@@ -52,7 +52,7 @@ class jupyterhub (
   Optional[Boolean] $systemdspawner_isolate_tmp,
   Optional[Boolean] $systemdspawner_isolate_devices,
 
-) inherits ::jupyterhub::params {
+) {
 
   # validate parameters here
   contain jupyterhub::install
