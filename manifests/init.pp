@@ -42,6 +42,7 @@ class jupyterhub (
   Stdlib::Absolutepath $pyvenv,
   Integer $port,
   Optional[Stdlib::Httpurl] $oauth_callback_url,
+  Optional[Boolean] $epel_enable,
   Optional[Boolean] $oauth_enable,
   Optional[Boolean] $oauth_github_enable,
   Optional[String] $oauth_github_client_id,
