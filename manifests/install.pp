@@ -7,8 +7,8 @@ class jupyterhub::install inherits jupyterhub {
     repo_url_suffix => '6.x',
   }
   case $facts['os']['family'] {
-    'Debian': { ensure_packages(['python3-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
-    'RedHat': { ensure_packages(['python34'],  {
+    'Debian': { ensure_packages(['git','python3-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
+    'RedHat': { ensure_packages(['git','python34'],  {
       require => Class['::epel'],
       before  => Python::Pyvenv[$::jupyterhub::pyvenv]})
     }
