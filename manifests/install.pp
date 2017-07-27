@@ -8,7 +8,10 @@ class jupyterhub::install inherits jupyterhub {
   }
   case $facts['os']['family'] {
     'Debian': { ensure_packages(['python3-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
-    'RedHat': { ensure_packages(['python34'],  { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
+    'RedHat': { ensure_packages(['python34'],  {
+      require => Class['::epel'],
+      before  => Python::Pyvenv[$::jupyterhub::pyvenv]})
+    }
     default: { ensure_packages(['python34'],  { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
   }
 
@@ -73,5 +76,6 @@ class jupyterhub::install inherits jupyterhub {
     package { 'configurable-http-proxy':
       ensure   => 'present',
       provider => 'npm',
+      require  =>  Class['::nodejs'],
     }
 }
