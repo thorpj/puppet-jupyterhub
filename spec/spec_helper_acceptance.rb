@@ -2,16 +2,15 @@ require 'beaker-rspec'
 require 'beaker/puppet_install_helper'
 require 'beaker/module_install_helper'
 
+UNSUPPORTED_PLATFORMS = ['windows', 'Darwin']
+
 run_puppet_install_helper
+install_ca_certs unless ENV['PUPPET_INSTALL_TYPE'] =~ /pe/i
 install_module_on(hosts)
 install_module_dependencies_on(hosts)
 
-UNSUPPORTED_PLATFORMS = ['windows', 'Darwin']
-
-run_puppet_install_helper unless ENV['BEAKER_provision'] == 'no'
-
 RSpec.configure do |c|
-  Project root
+  #Project root
   proj_root = File.expand_path(File.join(File.dirname(__FILE__), '..'))
 
   # Readable test descriptions
