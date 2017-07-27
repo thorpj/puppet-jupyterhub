@@ -4,16 +4,21 @@
 #
 class jupyterhub::install inherits jupyterhub {
 
-  if $facts['os']['name'] == 'Ubuntu' {
-    class {'::nodejs':
+
+  case $facts['os']['name'] {
+    'Ubuntu' : { class {'::nodejs':
       manage_package_repo       =>  false,
       nodejs_dev_package_ensure =>  'present',
       npm_package_ensure        =>  'present',
-    }
-  }
-
-  class { '::nodejs':
-    repo_url_suffix => '6.x',
+    }}
+    'Fedora' : { class {'::nodejs':
+      manage_package_repo       =>  false,
+      nodejs_dev_package_ensure =>  'present',
+      npm_package_ensure        =>  'present',
+    }}
+    'CentOS':{ class { '::nodejs':
+      repo_url_suffix => '6.x', }}
+      default: { class { '::nodejs': }}
   }
 
   ensure_packages(['git'], { before => Python::Pyvenv[$::jupyterhub::pyvenv]})
