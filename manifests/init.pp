@@ -31,17 +31,23 @@
 #
 class jupyterhub (
   # Default values are in jupyterhub/data
+  Optional[Stdlib::Absolutepath] $cookie_secret_file,
   String $service_name,
+  Boolean $service_enable,
+  Boolean $service_ensure,
+  Boolean $service_manage,
   String $jupyterhub_username,
   String $jupyterhub_group,
   Stdlib::Absolutepath $jupyterhub_dir,
   Stdlib::Absolutepath $pyvenv,
   Integer $port,
   Optional[Stdlib::Httpurl] $oauth_callback_url,
+  Optional[Boolean] $oauth_enable,
   Optional[Boolean] $oauth_github_enable,
   Optional[String] $oauth_github_client_id,
   Optional[String] $oauth_github_client_secret,
   String $base_url,
+  Optional[Boolean] $ssl_enable,
   Optional[Boolean] $sudospawner_enable,
   Optional[Array[String]] $sudospawner_allowed_users,
   Optional[Boolean] $systemdspawner_enable,
