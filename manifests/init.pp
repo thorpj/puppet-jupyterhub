@@ -34,7 +34,7 @@ class jupyterhub (
   Optional[Stdlib::Absolutepath] $cookie_secret_file,
   String $service_name,
   Boolean $service_enable,
-  String $service_ensure,
+  Enum['running', 'stopped'] $service_ensure,
   Boolean $service_manage,
   String $jupyterhub_username,
   String $jupyterhub_group,
