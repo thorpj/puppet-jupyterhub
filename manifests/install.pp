@@ -73,7 +73,7 @@ class jupyterhub::install inherits jupyterhub {
     if $::jupyterhub::sudospawner_enable {
 
       python::pip { 'sudospawner':
-        pkgname    => 'git+https://github.com/jupyterhub/sudospawner',
+        pkgname    => 'sudospawner',
         virtualenv => $::jupyterhub::pyvenv,
         owner      => $::jupyterhub::jupyterhub_username,
         require    => Python::Pyvenv[$::jupyterhub::pyvenv],
@@ -83,7 +83,7 @@ class jupyterhub::install inherits jupyterhub {
     if $::jupyterhub::systemdspawner_enable {
 
       python::pip { 'systemdspawner':
-        pkgname    => 'git+https://github.com/jupyterhub/systemdspawner',
+        pkgname    => 'jupyterhub-systemdspawner',
         virtualenv => $::jupyterhub::pyvenv,
         owner      => $::jupyterhub::jupyterhub_username,
         require    => Python::Pyvenv[$::jupyterhub::pyvenv],
