@@ -24,7 +24,7 @@ class jupyterhub::install inherits jupyterhub {
   ensure_packages(['git'], { before => Python::Pyvenv[$::jupyterhub::pyvenv]})
 
   case $facts['os']['family'] {
-    'Debian': { ensure_packages(['python3-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
+    'Debian': { ensure_packages(['python3.4-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
     'RedHat': { ensure_packages(['python34'],  {
       require => Class['::epel'],
       before  => Python::Pyvenv[$::jupyterhub::pyvenv]})
