@@ -1,6 +1,8 @@
 require 'spec_helper_acceptance'
 require 'specinfra'
 
+servicename = 'jupyterhub'
+
 shared_examples 'running' do
   describe service(servicename) do
     if !(fact('operatingsystem') == 'SLES' && fact('operatingsystemmajrelease') == '12')
