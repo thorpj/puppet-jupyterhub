@@ -11,11 +11,11 @@ describe 'jupyterhub' do
       it { is_expected.to compile.with_all_deps }
       describe "Testing the dependancies between the classes" do
 
-        it { should contain_class('jupyterhub::install') }
-        it { should contain_class('jupyterhub::config') }
-        it { should contain_class('jupyterhub::service') }
-        it { is_expected.to contain_class('jupyterhub::install').that_comes_before('jupyterhub::config') }
-        it { is_expected.to contain_class('jupyterhub::service').that_subscribes_to('jupyterhub::config') }
+        it { should include_class('jupyterhub::install') }
+        it { should include_class('jupyterhub::config') }
+        it { should include_class('jupyterhub::service') }
+        it { is_expected.to include_class('jupyterhub::install').that_comes_before('jupyterhub::config') }
+        it { is_expected.to include_class('jupyterhub::service').that_subscribes_to('jupyterhub::config') }
 
         it { is_expected.to contain_service('jupyterhub') }
       end
