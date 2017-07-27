@@ -3,12 +3,16 @@
 # This class is called from jupyterhub for install.
 #
 class jupyterhub::install inherits jupyterhub {
+
   class { '::nodejs':
     repo_url_suffix => '6.x',
   }
+
+  ensure_packages(['git'], { before => Python::Pyvenv[$::jupyterhub::pyvenv]})
+
   case $facts['os']['family'] {
-    'Debian': { ensure_packages(['git','python3-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
-    'RedHat': { ensure_packages(['git','python34'],  {
+    'Debian': { ensure_packages(['python3-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
+    'RedHat': { ensure_packages(['python34'],  {
       require => Class['::epel'],
       before  => Python::Pyvenv[$::jupyterhub::pyvenv]})
     }
