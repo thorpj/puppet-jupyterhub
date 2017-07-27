@@ -1,25 +1,37 @@
 require 'spec_helper_acceptance'
 
-describe 'jupyterhub class' do
-  context 'default parameters' do
-    # Using puppet_apply as a helper
-    it 'should work idempotently with no errors' do
-      pp = <<-EOS
-      class { 'jupyterhub': }
-      EOS
+describe 'jupyterhub class:', :unless => UNSUPPORTED_PLATFORMS.include?(fact('osfamily')) do
+  it 'should run successfully' do
+    pp = "class { 'jupyterhub': }"
 
-      # Run it twice and test for idempotency
-      apply_manifest(pp, :catch_failures => true)
-      apply_manifest(pp, :catch_changes  => true)
+    # Apply twice to ensure no errors the second time.
+    apply_manifest(pp, :catch_failures => true) do |r|
+      expect(r.stderr).not_to match(/error/i)
     end
+    apply_manifest(pp, :catch_failures => true) do |r|
+      expect(r.stderr).not_to eq(/error/i)
 
-    describe package('jupyterhub') do
-      it { is_expected.to be_installed }
+      expect(r.exit_code).to be_zero
     end
+  end
 
-    describe service('jupyterhub') do
-      it { is_expected.to be_enabled }
-      it { is_expected.to be_running }
+  context 'service_ensure => stopped:' do
+    it 'runs successfully' do
+      pp = "class { 'jupyterhub': service_ensure => stopped }"
+
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stderr).not_to match(/error/i)
+      end
+    end
+  end
+
+  context 'service_ensure => running:' do
+    it 'runs successfully' do
+      pp = "class { 'jupyterhub': service_ensure => running }"
+
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stderr).not_to match(/error/i)
+      end
     end
   end
 end
