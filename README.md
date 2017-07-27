@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/yorickps/puppet-jupyterhub.svg?branch=master)](https://travis-ci.org/yorickps/puppet-jupyterhub)
+
 #### Table of Contents
 
 1. [Overview](#overview)
