@@ -15,15 +15,15 @@ describe 'jupyterhub class:', :unless => UNSUPPORTED_PLATFORMS.include?(fact('os
     end
   end
 
-#  context 'service_ensure => stopped:' do
-#    it 'runs successfully' do
-#      pp = "class { 'jupyterhub': service_ensure => stopped }"
-#
-#      apply_manifest(pp, :catch_failures => true) do |r|
-#        expect(r.stderr).not_to match(/error/i)
-#      end
-#    end
-#  end
+  context 'service_ensure => stopped:' do
+    it 'runs successfully' do
+      pp = "class { 'jupyterhub': service_ensure => stopped }"
+
+      apply_manifest(pp, :catch_failures => true) do |r|
+        expect(r.stderr).not_to match(/error/i)
+      end
+    end
+  end
 
   context 'service_ensure => running:' do
     it 'runs successfully' do
