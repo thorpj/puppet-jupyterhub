@@ -5,9 +5,11 @@
 class jupyterhub::install inherits jupyterhub {
 
   if $facts['os']['name'] == 'Ubuntu' {
-    manage_package_repo       =>  false,
-    nodejs_dev_package_ensure =>  'present',
-    npm_package_ensure        =>  'present',
+    class {'::nodejs':
+      manage_package_repo       =>  false,
+      nodejs_dev_package_ensure =>  'present',
+      npm_package_ensure        =>  'present',
+    }
   }
 
   class { '::nodejs':
