@@ -2,16 +2,13 @@
 
 #### Table of Contents
 
-1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with jupyterhub](#setup)
-    * [What jupyterhub affects](#what-jupyterhub-affects)
-    * [Setup requirements](#setup-requirements)
+1. [Module Description](#module-description)
+1. [Setup](#setup)
     * [Beginning with jupyterhub](#beginning-with-jupyterhub)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+    * [Setup requirements](#setup-requirements)
+1. [Usage](#usage)
+1. [Reference](#reference)
+1. [Limitations - OS compatibility, etc.](#limitations)
 
 
 ## Module Description
