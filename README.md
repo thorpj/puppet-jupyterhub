@@ -76,7 +76,7 @@ jupyterhub: Main class, includes all other.
 
 #### Private classes
 
-- jupyterhub::install: Installs all packagesi (python pyvenv, nodejs,...) and dependencies
+- jupyterhub::install: Installs all packages (python pyvenv, nodejs,...) and dependencies
 - jupyterhub::config: Sets the config and log file
 - jupyterhub::service: Handles the systemd service
 
