@@ -27,29 +27,37 @@ Following parameters are available, and are the defaults:
 
 ```yaml
 ---
-jupyterhub::service_name: 'jupyterhub'
-jupyterhub::jupyterhub_username: 'jupyter'
-jupyterhub::jupyterhub_group: 'jupyter'
-jupyterhub::jupyterhub_dir: /opt/jupyterhub
-jupyterhub::pyvenv: /opt/jupyterhub/pyvenv
 jupyterhub::allowed_users: ~
-jupyterhub::port: 7000
+jupyterhub::base_url: /
+jupyterhub::cookie_secret_file: ~
+jupyterhub::epel_enable: true
+jupyterhub::jupyterhub_dir: /opt/jupyterhub
+jupyterhub::jupyterhub_group: 'jupyter'
+jupyterhub::jupyterhub_username: 'jupyter'
 jupyterhub::oauth_callback_url: ~
 jupyterhub::oauth_client_id: ~
 jupyterhub::oauth_client_secret: ~
 jupyterhub::oauth_create_system_users: false
-jupyterhub::oauth_github_enable: false
+jupyterhub::oauth_enable: false
 jupyterhub::oauth_github_client_id: ~
 jupyterhub::oauth_github_client_secret: ~
-jupyterhub::base_url: /
+jupyterhub::oauth_github_enable: false
+jupyterhub::port: 7000
+jupyterhub::pyvenv: /opt/jupyterhub/pyvenv
+jupyterhub::service_enable: true
+jupyterhub::service_ensure: running
+jupyterhub::service_manage: true
+jupyterhub::service_name: jupyterhub
+jupyterhub::ssl_enable: false
+jupyterhub::sudospawner_allowed_users: []
 jupyterhub::sudospawner_enable: true
-jupyterhub::systemdspawner_enable: false
-jupyterhub::systemdspawner_user_workingdir: /home/{USERNAME}
-jupyterhub::systemdspawner_default_shell: ~
-jupyterhub::systemdspawner_mem_limit: 'None'
 jupyterhub::systemdspawner_cpu_limit: 'None'
-jupyterhub::systemdspawner_isolate_tmp: false
+jupyterhub::systemdspawner_default_shell: ~
+jupyterhub::systemdspawner_enable: false
 jupyterhub::systemdspawner_isolate_devices: false
+jupyterhub::systemdspawner_isolate_tmp: false
+jupyterhub::systemdspawner_mem_limit: 'None'
+jupyterhub::systemdspawner_user_workingdir: /home/{USERNAME}
 ```
 
 ### Setup Requirements **OPTIONAL**
