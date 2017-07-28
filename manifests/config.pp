@@ -2,7 +2,7 @@
 #
 # This class is called from jupyterhub for service config.
 #
-class jupyterhub::config {
+class jupyterhub::config inherits jupyterhub {
 
   file { '/var/log/jupyterhub.log':
     ensure => present,
@@ -18,19 +18,19 @@ class jupyterhub::config {
 
     file { '/etc/sudoers.d/sudospawner':
       owner   => root,
-      content => template("${module_name}/jupyterhub_sudoers.erb"),
+      content => epp("${module_name}/jupyterhub_sudoers.epp"),
     }
   }
 
   file { "${::jupyterhub::jupyterhub_dir}/start_jupyterhub.sh":
     owner   => $::jupyterhub::jupyterhub_username,
     mode    => '0755',
-    content => template("${module_name}/start_jupyterhub.sh.erb"),
+    content => epp("${module_name}/start_jupyterhub.sh.epp"),
   }
 
   file { "/etc/systemd/system/${::jupyterhub::service_name}.service":
     owner   => 'root',
-    content => template("${module_name}/jupyterhub.service.erb"),
+    content => epp("${module_name}/jupyterhub.service.epp"),
   }
   #~>
   #Exec[ systemctl_daemon-reload ]

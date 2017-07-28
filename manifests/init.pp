@@ -6,38 +6,63 @@
 # Parameters
 # ----------
 #
-# * `sample parameter`
+# @param service_name [String] Set name of the Jupyterhub service.
+# @param jupyterhub_username [String] Set username
+# @param jupyterhub_group [String] Set group
+# @param Stdlib::Absolutepath $jupyterhub_dir,
+# @param Stdlib::Absolutepath $pyvenv,
+# @param Optional[String] $allowed_users,
+# @param Integer $port,
+# @param Optional[Httpurl] $oauth_callback_url,
+# @param Optional[Boolean] $oauth_github_enable,
+# @param Optional[String] $oauth_github_client_id,
+# @param Optional[String] $oauth_github_client_secret,
+# @param String $base_url,
+# @param Optional[Boolean] $sudospawner_enable,
+# @param Optional[Boolean] $systemdspawner_enable,
+# @param Optional[Stdlib::Absolutepath] $systemdspawner_user_workingdir,
+# @param Optional[Stdlib::Absolutepath] $systemdspawner_default_shell,
+# @param Optional[String] $systemdspawner_mem_limit,
+# @param Optional[String] $systemdspawner_cpu_limit,
+# @param Optional[Boolean] $systemdspawner_isolate_tmp,
+# @param Optional[Boolean] $systemdspawner_isolate_devices,
 #   Explanation of what this parameter affects and what it defaults to.
 #   e.g. "Specify one or more upstream ntp servers as an array."
 #
 class jupyterhub (
-  $service_name                    = $::jupyterhub::params::service_name,
-  $jupyterhub_username             = $::jupyterhub::params::jupyterhub_username,
-  $jupyterhub_group                = $::jupyterhub::params::jupyterhub_group,
-  $jupyterhub_dir                  = $::jupyterhub::params::jupyterhub_dir,
-  $pyvenv                          = $::jupyterhub::params::pyvenv,
-  $allowed_users                   = $::jupyterhub::params::allowed_users,
-  $port                            = $::jupyterhub::params::port,
-  $oauth_callback_url              = $::jupyterhub::params::oauth_callback_url,
-  $oauth_github_enable             = $::jupyterhub::params::oauth_github_enable,
-  $oauth_github_client_id          = $::jupyterhub::params::oauth_github_client_id,
-  $oauth_github_client_secret      = $::jupyterhub::params::oauth_github_client_secret,
-  $base_url                        = $::jupyterhub::params::base_url,
-  $sudospawner_enable              = $::jupyterhub::params::sudospawner_enable,
-  $systemdspawner_enable           = $::jupyterhub::params::systemdpawner_enable,
-  $systemdspawner_user_workingdir  = $::jupyterhub::params::systemdspawner_user_workingdir,
-  $systemdspawner_default_shell    = $::jupyterhub::params::systemdspawner_default_shell,
-  $systemdspawner_mem_limit        = $::jupyterhub::params::systemdspawner_mem_limit,
-  $systemdspawner_cpu_limit        = $::jupyterhub::params::systemdspawner_cpu_limit,
-  $systemdspawner_isolate_tmp      = $::jupyterhub::params::systemdspawner_isolate_tmp,
-  $systemdspawner_isolate_devices  = $::jupyterhub::params::systemdspawner_isolate_devices,
+  # Default values are in jupyterhub/data
+  Optional[Stdlib::Absolutepath] $cookie_secret_file,
+  String $service_name,
+  Boolean $service_enable,
+  Variant[Enum['running', 'stopped'], Boolean] $service_ensure,
+  Boolean $service_manage,
+  String $jupyterhub_username,
+  String $jupyterhub_group,
+  Stdlib::Absolutepath $jupyterhub_dir,
+  Stdlib::Absolutepath $pyvenv,
+  Integer $port,
+  Optional[Stdlib::Httpurl] $oauth_callback_url,
+  Optional[Boolean] $epel_enable,
+  Optional[Boolean] $manage_git,
+  Optional[Boolean] $oauth_enable,
+  Optional[Boolean] $oauth_github_enable,
+  Optional[String] $oauth_github_client_id,
+  Optional[String] $oauth_github_client_secret,
+  String $base_url,
+  Optional[Boolean] $ssl_enable,
+  Optional[Boolean] $sudospawner_enable,
+  Optional[Array[String]] $sudospawner_allowed_users,
+  Optional[Boolean] $systemdspawner_enable,
+  Optional[Stdlib::Absolutepath] $systemdspawner_user_workingdir,
+  Optional[Stdlib::Absolutepath] $systemdspawner_default_shell,
+  Optional[String] $systemdspawner_mem_limit,
+  Optional[String] $systemdspawner_cpu_limit,
+  Optional[Boolean] $systemdspawner_isolate_tmp,
+  Optional[Boolean] $systemdspawner_isolate_devices,
 
-) inherits ::jupyterhub::params {
+) {
 
-  # validate parameters here
-
-  class { '::jupyterhub::install': }
-  -> class { '::jupyterhub::config': }
-  ~> class { '::jupyterhub::service': }
-  -> Class['::jupyterhub']
+  Class { '::jupyterhub::install': }
+  -> Class { '::jupyterhub::config': }
+  ~> Class { '::jupyterhub::service': }
 }

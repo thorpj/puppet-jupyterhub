@@ -2,16 +2,35 @@
 #
 # This class is called from jupyterhub for install.
 #
-class jupyterhub::install
-(
-  $use_nodesource = true,
-){
-  class { '::nodejs':
-    repo_url_suffix => '6.x',
+class jupyterhub::install inherits jupyterhub {
+
+
+  case $facts['os']['name'] {
+    'Ubuntu' : { class {'::nodejs':
+      manage_package_repo       =>  false,
+      nodejs_dev_package_ensure =>  'present',
+      npm_package_ensure        =>  'present',
+      }}
+    'Fedora' : { class {'::nodejs':
+      manage_package_repo       =>  false,
+      nodejs_dev_package_ensure =>  'present',
+      npm_package_ensure        =>  'present',
+      }}
+    'CentOS':{ class { '::nodejs':
+      repo_url_suffix => '6.x', }}
+      default: { class { '::nodejs': }}
   }
+
+  if $jupyterhub::manage_git == true {
+    ensure_packages(['git'], { before => Python::Pyvenv[$::jupyterhub::pyvenv]})
+  }
+
   case $facts['os']['family'] {
-    'Debian': { ensure_packages(['python3-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
-    'RedHat': { ensure_packages(['python34'],  { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
+    'Debian': { ensure_packages(['python3.4-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
+    'RedHat': { ensure_packages(['python34'],  {
+      require => Class['::epel'],
+      before  => Python::Pyvenv[$::jupyterhub::pyvenv]})
+    }
     default: { ensure_packages(['python34'],  { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
   }
 
@@ -56,7 +75,7 @@ class jupyterhub::install
     if $::jupyterhub::sudospawner_enable {
 
       python::pip { 'sudospawner':
-        pkgname    => 'git+https://github.com/jupyterhub/sudospawner',
+        pkgname    => 'sudospawner',
         virtualenv => $::jupyterhub::pyvenv,
         owner      => $::jupyterhub::jupyterhub_username,
         require    => Python::Pyvenv[$::jupyterhub::pyvenv],
@@ -66,7 +85,7 @@ class jupyterhub::install
     if $::jupyterhub::systemdspawner_enable {
 
       python::pip { 'systemdspawner':
-        pkgname    => 'git+https://github.com/jupyterhub/systemdspawner',
+        pkgname    => 'jupyterhub-systemdspawner',
         virtualenv => $::jupyterhub::pyvenv,
         owner      => $::jupyterhub::jupyterhub_username,
         require    => Python::Pyvenv[$::jupyterhub::pyvenv],
@@ -76,5 +95,6 @@ class jupyterhub::install
     package { 'configurable-http-proxy':
       ensure   => 'present',
       provider => 'npm',
+      require  =>  Class['::nodejs'],
     }
 }
