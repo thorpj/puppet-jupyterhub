@@ -20,13 +20,22 @@ This module installs, configures and managed [Jupyterhub](https://github.com/jup
 
 ## Setup
 
+### Beginning with jupyterhub
+
 `include ::jupyterhub` should be enough to get it up and running.
-To enable the different spawners, set the right boolean to `true`.
+
+
+### Setup Requirements
+
+The module needs Python and Nodejs, both modules are listed in the dependencies. On CentOS, EPEL is needed if the boolean is set to `true`, but EPEL comes as a dependency of the stankevich-python module.
+
+## Usage
+
+All parameters for the jupyterhub module are contained within the main ::jupyterhub class, so for any function of the module, set the options you want.
 
 Following parameters are available, and are the defaults:
 
 ```yaml
----
 jupyterhub::allowed_users: ~
 jupyterhub::base_url: /
 jupyterhub::cookie_secret_file: ~
@@ -60,32 +69,29 @@ jupyterhub::systemdspawner_mem_limit: 'None'
 jupyterhub::systemdspawner_user_workingdir: /home/{USERNAME}
 ```
 
-### Setup Requirements **OPTIONAL**
-
-The module needs Python and Nodejs, both modules are listed in the dependencies
-
-### Beginning with jupyterhub
-
-The very basic steps needed for a user to get the module up and running.
-
-If your most recent release breaks compatibility or requires particular steps for upgrading, you may wish to include an additional section here: Upgrading (For an example, see http://forge.puppetlabs.com/puppetlabs/firewall).
-
-## Usage
-
-Put the classes, types, and resources for customizing, configuring, and doing the fancy stuff with your module here.
-
 ## Reference
 
-Here, list the classes, types, providers, facts, etc contained in your module. This section should include all of the under-the-hood workings of your module so people know what the module is touching on their system but don't need to mess with things. (We are working on automating this section!)
+### Classes
+
+#### Public classes
+
+jupyterhub: Main class, includes all other.
+
+#### Private classes
+
+- jupyterhub::install: Installs all packagesi (python pyvenv, nodejs,...) and dependencies
+- jupyterhub::config: Sets the config and log file
+- jupyterhub::service: Handles the systemd service
 
 ## Limitations
 
-This is where you list OS compatibility, version compatibility, etc.
+To enable the different spawners, set the right boolean to `true`. You can only enable one spawner at a time.
+At the moment, only the sudospawner and systemdspawner are supported.
 
-## Development
+By default systemd is used for the service. You can disable the service management by setting
 
-Since your module is awesome, other users will want to play with it. Let them know what the ground rules for contributing are.
+```yaml
+jupyterhub::service_manage: false
+```
 
-## Release Notes/Contributors/Etc **Optional**
-
-If you aren't using changelog, put your release notes here (though you should consider using changelog). You may also add any additional sections you feel are necessary or important to include here. Please use the `## ` header.
+The role has been tested on CentOS 7. It could be that the Debian OS family needs some work or debugging regarding the python pyvenv.
