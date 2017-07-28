@@ -10,18 +10,20 @@ class jupyterhub::install inherits jupyterhub {
       manage_package_repo       =>  false,
       nodejs_dev_package_ensure =>  'present',
       npm_package_ensure        =>  'present',
-    }}
-    'Fedora' : { class {'::nodejs':
-      manage_package_repo       =>  false,
-      nodejs_dev_package_ensure =>  'present',
-      npm_package_ensure        =>  'present',
-    }}
-    'CentOS':{ class { '::nodejs':
-      repo_url_suffix => '6.x', }}
-      default: { class { '::nodejs': }}
+      }}
+      'Fedora' : { class {'::nodejs':
+        manage_package_repo       =>  false,
+        nodejs_dev_package_ensure =>  'present',
+        npm_package_ensure        =>  'present',
+        }}
+        'CentOS':{ class { '::nodejs':
+          repo_url_suffix => '6.x', }}
+          default: { class { '::nodejs': }}
   }
 
-  ensure_packages(['git'], { before => Python::Pyvenv[$::jupyterhub::pyvenv]})
+  if $jupyterhub::manage_git == true {
+    ensure_packages(['git'], { before => Python::Pyvenv[$::jupyterhub::pyvenv]})
+  }
 
   case $facts['os']['family'] {
     'Debian': { ensure_packages(['python3.4-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
