@@ -30,6 +30,23 @@ The module needs Python and Nodejs, both modules are listed in the dependencies.
 
 All parameters for the jupyterhub module are contained within the main ::jupyterhub class, so for any function of the module, set the options you want.
 
+
+## Reference
+
+### Classes
+
+#### Public classes
+
+jupyterhub: Main class, includes all other.
+
+#### Private classes
+
+- jupyterhub::install: Installs all packages (python pyvenv, nodejs,...) and dependencies
+- jupyterhub::config: Sets the config and log file
+- jupyterhub::service: Handles the systemd service
+
+### Parameters
+
 Following parameters are available, and are the defaults:
 
 ```yaml
@@ -65,20 +82,6 @@ jupyterhub::systemdspawner_isolate_tmp: false
 jupyterhub::systemdspawner_mem_limit: 'None'
 jupyterhub::systemdspawner_user_workingdir: /home/{USERNAME}
 ```
-
-## Reference
-
-### Classes
-
-#### Public classes
-
-jupyterhub: Main class, includes all other.
-
-#### Private classes
-
-- jupyterhub::install: Installs all packages (python pyvenv, nodejs,...) and dependencies
-- jupyterhub::config: Sets the config and log file
-- jupyterhub::service: Handles the systemd service
 
 ## Limitations
 
