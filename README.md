@@ -15,6 +15,8 @@
 
 This module installs, configures and managed [Jupyterhub](https://github.com/jupyterhub/jupyterhub). The module has support for the [sudospawner](https://github.com/jupyterhub/sudospawner) and [systemdspawner](https://github.com/jupyterhub/systemdspawner). This module is a fork and has been rewritten to support hiera 5.
 
+For different OAuthenticator setups, have a look at the [jupyterhub oauthenticator github page](https://github.com/jupyterhub/oauthenticator)
+
 ## Setup
 
 ### Beginning with jupyterhub
