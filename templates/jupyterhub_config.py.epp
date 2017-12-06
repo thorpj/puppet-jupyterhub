@@ -25,6 +25,9 @@ c.JupyterHub.cookie_secret_file = '<%= $jupyterhub::cookie_secret_file %>'
 # sudospawner 
 c.JupyterHub.spawner_class='sudospawner.SudoSpawner'
 c.SudoSpawner.sudospawner_path = '<%= $jupyterhub::pyvenv %>/bin/sudospawner'
+<% if $jupyterhub::sudospawner_debug_enable { -%>
+c.SudoSpawner.debug_mediator = True
+<% } -%>
 <% } -%>
 
 <% if $jupyterhub::systemdspawner_enable { -%>

@@ -53,6 +53,7 @@ class jupyterhub (
   String $base_url,
   Optional[Boolean] $ssl_enable,
   Optional[Boolean] $sudospawner_enable,
+  Optional[Boolean] $sudospawner_debug_enable,
   Optional[Array[String]] $sudospawner_allowed_users,
   Optional[Boolean] $systemdspawner_enable,
   Optional[Stdlib::Absolutepath] $systemdspawner_user_workingdir,
