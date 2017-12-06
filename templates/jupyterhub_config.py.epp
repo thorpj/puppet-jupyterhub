@@ -44,11 +44,11 @@ c.SystemdSpawner.cpu_limit = '<%= $jupyterhub::systemdspawner_cpu_limit %>'
 <% } -%>
 
 <% if $jupyterhub::oauth_enable { -%>
-# my oauth 
-c.JupyterHub.authenticator_class = 'oauthenticator.MyOAuthenticator'
-c.MyOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
-c.MyOAuthenticator.client_id = '<%= $jupyterhub::oauth_client_id %>'
-c.MyOAuthenticator.client_secret = '<%= $jupyterhub::oauth_client_secret %>'
+# oauth 
+c.JupyterHub.authenticator_class = '<%= $jupyterhub::oauth_full_name %>'
+c.<%= $jupyterhub::oauth_name %>.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
+c.<%= $jupyterhub::oauth_name %>.client_id = '<%= $jupyterhub::oauth_client_id %>'
+c.<%= $jupyterhub::oauth_name %>.client_secret = '<%= $jupyterhub::oauth_client_secret %>'
 <% if $jupyterhub::oauth_create_users { -%>
 c.LocalAuthenticator.create_system_users = True
 <% } -%>

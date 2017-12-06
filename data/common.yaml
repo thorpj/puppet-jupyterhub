@@ -13,6 +13,8 @@ jupyterhub::oauth_callback_url: ~
 jupyterhub::oauth_client_id: ~
 jupyterhub::oauth_client_secret: ~
 jupyterhub::oauth_create_system_users: false
+jupyterhub::oauth_name: 'MyOAuthenticator'
+jupyterhub::oauth_full_name: 'oauthenticator.MyOAuthenticator'
 jupyterhub::oauth_enable: false
 jupyterhub::oauth_github_client_id: ~
 jupyterhub::oauth_github_client_secret: ~
