@@ -6,7 +6,7 @@ c.JupyterHub.base_url = '<%= $jupyterhub::base_url %>'
 c.JupyterHub.ip = '<%= $jupyterhub::ip %>'
 c.JupyterHub.port = <%= $jupyterhub::port %>
 
-<% if $jupyterhub::enable_debug { -%>
+<% if $jupyterhub::debug_enable { -%>
 c.JupyterHub.log_level = 'DEBUG'
 <% } -%>
 

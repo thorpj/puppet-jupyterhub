@@ -44,7 +44,7 @@ class jupyterhub (
   Integer $port,
   Optional[Stdlib::Httpurl] $oauth_callback_url,
   Optional[Boolean] $epel_enable,
-  Optional[Boolean] $enable_debug,
+  Optional[Boolean] $debug_enable,
   Optional[Boolean] $manage_git,
   Optional[Boolean] $oauth_enable,
   Optional[String] $oauth_full_name,
