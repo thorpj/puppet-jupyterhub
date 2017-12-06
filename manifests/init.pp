@@ -40,6 +40,7 @@ class jupyterhub (
   String $jupyterhub_group,
   Stdlib::Absolutepath $jupyterhub_dir,
   Stdlib::Absolutepath $pyvenv,
+  $ip,
   Integer $port,
   Optional[Stdlib::Httpurl] $oauth_callback_url,
   Optional[Boolean] $epel_enable,

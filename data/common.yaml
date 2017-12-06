@@ -3,6 +3,7 @@ jupyterhub::allowed_users: ~
 jupyterhub::base_url: /
 jupyterhub::cookie_secret_file: ~
 jupyterhub::epel_enable: true
+jupyterhub::ip: 127.0.0.1
 jupyterhub::jupyterhub_dir: /opt/jupyterhub
 jupyterhub::jupyterhub_group: 'jupyter'
 jupyterhub::jupyterhub_username: 'jupyter'

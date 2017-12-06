@@ -3,7 +3,7 @@
 # basic config 
 c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
 c.JupyterHub.base_url = '<%= $jupyterhub::base_url %>'
-c.JupyterHub.ip = '127.0.0.1'
+c.JupyterHub.ip = '<%= $jupyterhub::ip %>'
 c.JupyterHub.port = <%= $jupyterhub::port %>
 
 <% if $jupyterhub::ssl_enable { -%>
