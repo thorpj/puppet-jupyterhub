@@ -6,6 +6,10 @@ c.JupyterHub.base_url = '<%= $jupyterhub::base_url %>'
 c.JupyterHub.ip = '<%= $jupyterhub::ip %>'
 c.JupyterHub.port = <%= $jupyterhub::port %>
 
+<% if $jupyterhub::enable_debug { -%>
+c.JupyterHub.log_level = 'DEBUG'
+<% } -%>
+
 <% if $jupyterhub::ssl_enable { -%>
 # SSL encryption 
 c.JupyterHub.ssl_key = '<%= $jupyterhub::ssl_key %>'
