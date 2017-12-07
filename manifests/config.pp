@@ -40,14 +40,9 @@ class jupyterhub::config inherits jupyterhub {
         owner   => 'root',
         content => epp("${module_name}/jupyterhub.service.epp"),
       }
-
     }
     default: {
       fail("No supported initsystem found for module ${module_name}")
     }
-  }
-  file { "/etc/systemd/system/${::jupyterhub::service_name}.service":
-    owner   => 'root',
-    content => epp("${module_name}/jupyterhub.service.epp"),
   }
 }
