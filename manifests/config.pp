@@ -28,10 +28,26 @@ class jupyterhub::config inherits jupyterhub {
     content => epp("${module_name}/start_jupyterhub.sh.epp"),
   }
 
+  case $::initsystem {
+    'sysvinit': {
+      file { "/etc/init.d/${::jupyterhub::service_name}":
+        owner   => 'root',
+        content => epp("${module_name}/jupyterhub.init.epp"),
+      }
+    }
+    'systemd': {
+      file { "/etc/systemd/system/${::jupyterhub::service_name}.service":
+        owner   => 'root',
+        content => epp("${module_name}/jupyterhub.service.epp"),
+      }
+
+    }
+    default: {
+      fail("No supported initsystem found for module ${module_name}")
+    }
+  }
   file { "/etc/systemd/system/${::jupyterhub::service_name}.service":
     owner   => 'root',
     content => epp("${module_name}/jupyterhub.service.epp"),
   }
-  #~>
-  #Exec[ systemctl_daemon-reload ]
-  }
+}
