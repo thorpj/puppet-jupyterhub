@@ -1,3 +1,5 @@
+# Managed by Puppet - manual changes will be overwritten.
+
 # comma-separated whitelist of users that can spawn single-user servers
 Runas_Alias JUPYTER_USERS = <%= join($jupyterhub::sudospawner_allowed_users,",") %>
 

@@ -1,4 +1,4 @@
-# This file is managed by Puppet - manual changes will be overwritten. %>
+# Managed by Puppet - manual changes will be overwritten. 
 
 # basic config 
 c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'

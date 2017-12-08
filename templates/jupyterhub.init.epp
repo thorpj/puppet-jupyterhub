@@ -1,4 +1,7 @@
 #! /bin/sh
+
+# Managed by Puppet - manual changes will be overwritten. 
+
 ### BEGIN INIT INFO
 # Provides:          jupyterhub
 # Required-Start:    $remote_fs $syslog
