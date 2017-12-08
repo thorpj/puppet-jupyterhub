@@ -32,7 +32,7 @@ class jupyterhub::config inherits jupyterhub {
     'sysvinit': {
       file { "/etc/init.d/${::jupyterhub::service_name}":
         owner   => 'root',
-        mode    =>  0755,
+        mode    => '0755',
         content => epp("${module_name}/jupyterhub.init.epp"),
       }
     }
