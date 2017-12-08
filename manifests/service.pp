@@ -9,7 +9,6 @@ class jupyterhub::service inherits jupyterhub {
     service { $jupyterhub::service_name:
       ensure     => $jupyterhub::service_ensure,
       enable     => $jupyterhub::service_enable,
-      hasstatus  => true,
       hasrestart => true,
     }
   }
