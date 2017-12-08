@@ -4,7 +4,6 @@
 #
 class jupyterhub::install inherits jupyterhub {
 
-
   case $facts['os']['name'] {
     'Ubuntu' : { class {'::nodejs':
       manage_package_repo       =>  false,
