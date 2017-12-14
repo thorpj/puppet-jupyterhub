@@ -23,10 +23,10 @@ For different OAuthenticator setups, have a look at the [jupyterhub oauthenticat
 
 `include ::jupyterhub` should be enough to get it up and running.
 
-
 ### Setup Requirements
 
-The module needs Python and Nodejs, both modules are listed in the dependencies. On CentOS, EPEL is needed if the boolean is set to `true`, but EPEL comes as a dependency of the stankevich-python module.
+The module needs Python and Nodejs, both modules are listed in the dependencies. On CentOS, EPEL is needed and comes as a dependency of the stankevich-python module. If you already have a local mirror or EPEL on the system, you can set the boolean to `false`. If there is no EPEL repo available, install will **fail**.
+
 
 ## Usage
 
@@ -45,7 +45,7 @@ jupyterhub: Main class, includes all other.
 
 - jupyterhub::install: Installs all packages (python pyvenv, nodejs,...) and dependencies
 - jupyterhub::config: Sets the config and log file
-- jupyterhub::service: Handles the systemd service
+- jupyterhub::service: Handles the sysvinit / systemd service
 
 ### Parameters
 
@@ -88,10 +88,10 @@ jupyterhub::systemdspawner_user_workingdir: /home/{USERNAME}
 
 ## Limitations
 
-To enable the different spawners, set the right boolean to `true`. You can only enable one spawner at a time.
+To enable the different spawners, set the right boolean to `true`.
 At the moment, only the sudospawner and systemdspawner are supported.
 
-By default systemd is used for the service. You can disable the service management by setting
+There is a lib for facter to detect the initsystem. Only systemd and sysvinit are supported. To disable the management of the service set following parameter in hiera. The module still copies the bash script to start up Jupyterhub, so you can start it throught the script.
 
 ```yaml
 jupyterhub::service_manage: false
