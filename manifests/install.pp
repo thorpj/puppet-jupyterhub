@@ -64,13 +64,6 @@ class jupyterhub::install inherits jupyterhub {
       require    => Python::Pyvenv[$::jupyterhub::pyvenv],
     }
 
-    python::pip { 'oauthenticator':
-      pkgname    => 'oauthenticator',
-      virtualenv => $::jupyterhub::pyvenv,
-      owner      => $::jupyterhub::jupyterhub_username,
-      require    => Python::Pyvenv[$::jupyterhub::pyvenv],
-    }
-
     if $::jupyterhub::sudospawner_enable {
 
       python::pip { 'sudospawner':
@@ -86,6 +79,25 @@ class jupyterhub::install inherits jupyterhub {
       python::pip { 'systemdspawner':
         pkgname    => 'jupyterhub-systemdspawner',
         virtualenv => $::jupyterhub::pyvenv,
+        owner      => $::jupyterhub::jupyterhub_username,
+        require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+      }
+    }
+
+    if $::jupyterhub::oauth_enable {
+
+      python::pip { 'oauthenticator':
+        pkgname    => 'oauthenticator',
+        virtualenv => $::jupyterhub::pyvenv,
+        owner      => $::jupyterhub::jupyterhub_username,
+        require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+      }
+    }
+
+    if $::jupyterhub::oauth_custom_enable {
+
+      file { "${::jupyterhub::pyvenv}/lib/python3.4/site-packages/oauthenticator":
+        content => epp("${module_name}/oauth_custom.py"),
         owner      => $::jupyterhub::jupyterhub_username,
         require    => Python::Pyvenv[$::jupyterhub::pyvenv],
       }
