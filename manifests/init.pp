@@ -26,8 +26,6 @@
 # @param Optional[String] $systemdspawner_cpu_limit,
 # @param Optional[Boolean] $systemdspawner_isolate_tmp,
 # @param Optional[Boolean] $systemdspawner_isolate_devices,
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
 #
 class jupyterhub (
   # Default values are in jupyterhub/data
