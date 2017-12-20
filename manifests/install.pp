@@ -98,7 +98,7 @@ class jupyterhub::install inherits jupyterhub {
 
       file { "${::jupyterhub::pyvenv}/lib/python3.4/site-packages/oauthenticator/oauth_custom.py":
         #content => epp("${module_name}/oauth_custom.py"),
-        source  => $::jupyterhub::oauth_custom_template,
+        source  => "file:///${::jupyterhub::oauth_custom_template}",
         owner   => $::jupyterhub::jupyterhub_username,
         require => Python::Pyvenv[$::jupyterhub::pyvenv],
       }
