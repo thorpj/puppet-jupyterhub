@@ -34,7 +34,8 @@ class jupyterhub::install {
   }
 
   user { $::jupyterhub::jupyterhub_username:
-    ensure => present,
+    ensure     => present,
+    managehome => true, 
   }
 
   ~> file { $::jupyterhub::jupyterhub_dir:
