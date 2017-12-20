@@ -53,7 +53,7 @@ c.JupyterHub.authenticator_class = <%= $jupyterhub::oauth_full_name %>.<%= $jupy
 c.<%= $jupyterhub::oauth_name %>.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
 c.<%= $jupyterhub::oauth_name %>.client_id = '<%= $jupyterhub::oauth_client_id %>'
 c.<%= $jupyterhub::oauth_name %>.client_secret = '<%= $jupyterhub::oauth_client_secret %>'
-<% if $jupyterhub::oauth_create_users { -%>
+<% if $jupyterhub::oauth_create_system_users { -%>
 c.LocalAuthenticator.create_system_users = True
 <% } -%>
 <% } -%>
@@ -64,7 +64,7 @@ c.JupyterHub.authenticator_class = 'oauthenticator.LocalGitHubOAuthenticator'
 c.GitHubOAuthenticator.oauth_callback_url = '<%= $jupyterhub::oauth_callback_url %>'
 c.GitHubOAuthenticator.client_id = '<%= $jupyterhub::oauth_github_client_id %>'
 c.GitHubOAuthenticator.client_secret = '<%= $jupyterhub::oauth_github_client_secret %>'
-<% if $jupyterhub::oauth_create_users { -%>
+<% if $jupyterhub::oauth_create_system_users { -%>
 c.LocalAuthenticator.create_system_users = True
 <% } -%>
 <% } -%>
