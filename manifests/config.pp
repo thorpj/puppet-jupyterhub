@@ -2,7 +2,7 @@
 #
 # This class is called from jupyterhub for service config.
 #
-class jupyterhub::config inherits jupyterhub {
+class jupyterhub::config {
 
   file { '/var/log/jupyterhub.log':
     ensure => present,

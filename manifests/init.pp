@@ -51,6 +51,7 @@ class jupyterhub (
   Optional[String] $oauth_name,
   Optional[String] $oauth_client_id,
   Optional[String] $oauth_client_secret,
+  Optional[Boolean] $oauth_create_system_users,
   Optional[Boolean] $oauth_github_enable,
   Optional[String] $oauth_github_client_id,
   Optional[String] $oauth_github_client_secret,
