@@ -46,7 +46,6 @@ class jupyterhub (
   Optional[Boolean] $manage_git,
   Optional[Boolean] $oauth_enable,
   Optional[Boolean] $oauth_custom_enable,
-  Optional $oauth_custom_template,
   Optional[String] $oauth_full_name,
   Optional[String] $oauth_name,
   Optional[String] $oauth_client_id,

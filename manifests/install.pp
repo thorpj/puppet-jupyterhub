@@ -35,13 +35,12 @@ class jupyterhub::install {
 
   user { $::jupyterhub::jupyterhub_username:
     ensure     => present,
-    managehome => true, 
   }
 
   file { $::jupyterhub::jupyterhub_dir:
     ensure  => directory,
     owner   => $::jupyterhub::jupyterhub_username,
-    require => User[$::jupyterhub::jupyterhub_username], 
+    require => User[$::jupyterhub::jupyterhub_username],
   }
 
   python::pyvenv { $::jupyterhub::pyvenv:
@@ -49,7 +48,7 @@ class jupyterhub::install {
     version => 'system',
     owner   => $::jupyterhub::jupyterhub_username,
     group   => $::jupyterhub::jupyterhub_group,
-    require => File[$::jupyterhub::jupyterhub_dir], 
+    require => File[$::jupyterhub::jupyterhub_dir],
   }
 
   python::pip { 'jupyter':
@@ -100,16 +99,6 @@ class jupyterhub::install {
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[$::jupyterhub::pyvenv],
-    }
-  }
-
-  if $::jupyterhub::oauth_custom_enable {
-
-    file { "${::jupyterhub::pyvenv}/lib/python3.4/site-packages/oauthenticator/oauth_custom.py":
-      #content => epp("${module_name}/oauth_custom.py"),
-      source  => "file://${::jupyterhub::oauth_custom_template}",
-      owner   => $::jupyterhub::jupyterhub_username,
-      require => Python::Pyvenv[$::jupyterhub::pyvenv],
     }
   }
 

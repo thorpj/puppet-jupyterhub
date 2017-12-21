@@ -17,7 +17,6 @@ jupyterhub::oauth_name: 'MyOAuthenticator'
 jupyterhub::oauth_full_name: 'oauthenticator.MyOAuthenticator'
 jupyterhub::oauth_enable: false
 jupyterhub::oauth_custom_enable: false
-jupyterhub::oauth_custom_template: ~
 jupyterhub::oauth_github_client_id: ~
 jupyterhub::oauth_github_client_secret: ~
 jupyterhub::oauth_github_enable: false
