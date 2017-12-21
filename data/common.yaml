@@ -27,6 +27,8 @@ jupyterhub::service_ensure: running
 jupyterhub::service_manage: true
 jupyterhub::service_name: jupyterhub
 jupyterhub::ssl_enable: false
+jupyterhub::ssl_cert: ~
+jupyterhub::ssl_key: ~
 jupyterhub::sudospawner_allowed_users: []
 jupyterhub::sudospawner_enable: true
 jupyterhub::sudospawner_debug_enable: false
