@@ -5,19 +5,23 @@
 class jupyterhub::install {
 
   case $facts['os']['name'] {
-    'Ubuntu' : { class {'::nodejs':
+    'Ubuntu': { class {'::nodejs':
       manage_package_repo       =>  false,
       nodejs_dev_package_ensure =>  'present',
       npm_package_ensure        =>  'present',
-      }}
-      'Fedora' : { class {'::nodejs':
-        manage_package_repo       =>  false,
-        nodejs_dev_package_ensure =>  'present',
-        npm_package_ensure        =>  'present',
-        }}
-        'CentOS':{ class { '::nodejs':
-          repo_url_suffix => '6.x', }}
-          default: { class { '::nodejs': }}
+    }
+    }
+    'Fedora': { class {'::nodejs':
+      manage_package_repo       =>  false,
+      nodejs_dev_package_ensure =>  'present',
+      npm_package_ensure        =>  'present',
+    }
+    }
+    'CentOS':{ class { '::nodejs':
+      repo_url_suffix => '6.x', }
+    }
+    default: { class { '::nodejs': }
+    }
   }
 
   if $jupyterhub::manage_git == true {
