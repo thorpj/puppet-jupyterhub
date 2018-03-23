@@ -56,6 +56,7 @@ class jupyterhub (
   Optional[String] $oauth_github_client_secret,
   String $base_url,
   Optional[Boolean] $ssl_enable,
+  Optional[Integer] $proxy_api_port,
   Optional[Stdlib::Absolutepath] $ssl_cert,
   Optional[Stdlib::Absolutepath] $ssl_key,
   Optional[Boolean] $sudospawner_enable,
