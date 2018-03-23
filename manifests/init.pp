@@ -40,6 +40,7 @@ class jupyterhub (
   Stdlib::Absolutepath $pyvenv,
   $ip,
   Integer $port,
+  Optional[Integer] $hub_port,
   Optional[Stdlib::Httpurl] $oauth_callback_url,
   Optional[Boolean] $epel_enable,
   Optional[Boolean] $debug_enable,

@@ -5,6 +5,9 @@ c.JupyterHub.extra_log_file = '/var/log/jupyterhub.log'
 c.JupyterHub.base_url = '<%= $jupyterhub::base_url %>'
 c.JupyterHub.ip = '<%= $jupyterhub::ip %>'
 c.JupyterHub.port = <%= $jupyterhub::port %>
+<% if $jupyterhub::hub_port { -%>
+c.JupyterHub.hub_port = '<%= $jupyterhub::hub_port %>'
+<% } -%>
 <% if $jupyterhub::proxy_api_port { -%>
 c.JupyterHub.proxy_api_port = '<%= $jupyterhub::proxy_api_port %>'
 <% } -%>
