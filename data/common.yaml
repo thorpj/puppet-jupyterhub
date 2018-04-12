@@ -22,7 +22,7 @@ jupyterhub::oauth_github_client_secret: ~
 jupyterhub::oauth_github_enable: false
 jupyterhub::port: 7000
 jupyterhub::hub_port: 7001
-jupyterhub::proxy_api_port: 8081
+jupyterhub::proxy_api_port: ~
 jupyterhub::pyvenv: /opt/jupyterhub/pyvenv
 jupyterhub::service_enable: true
 jupyterhub::service_ensure: running
