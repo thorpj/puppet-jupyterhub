@@ -118,10 +118,10 @@ class jupyterhub::install {
 
   if $::jupyterhub::custom_packages_enable {
 
-    $jupyterhub::custom_packages.each |String $jupyterhub::custom_package | {
+    $jupyterhub::custom_packages.each |String $custom_package | {
 
-      python::pip { $jupyterhub::custom_package:
-        pkgname    => $jupyterhub::custom_package,
+      python::pip { $custom_package:
+        pkgname    => $custom_package,
         virtualenv => $::jupyterhub::pyvenv,
         owner      => $::jupyterhub::jupyterhub_username,
         require    => Python::Pyvenv[$::jupyterhub::pyvenv],
