@@ -51,8 +51,8 @@ c.SystemdSpawner.cpu_limit = '<%= $jupyterhub::systemdspawner_cpu_limit %>'
 
 <% if $jupyterhub::batchspawner_enable { -%>
 # batchspawner
-c.Spawner_class = 'batchspawner.TorqueSpawner'
-c.Spawner.http_timeout = 120
+c.JupyterHub.spawner_class = 'batchspawner.TorqueSpawner'
+c.BatchSpawner.http_timeout = 120
 #------------------------------------------------------------------------------
 # BatchSpawnerBase configuration
 #    These are simply setting parameters used in the job script template below
@@ -79,7 +79,6 @@ module load python3
 {cmd}
 '''
 <% } -%>
-
 
 
 <% if $jupyterhub::oauth_enable { -%>
