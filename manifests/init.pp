@@ -76,6 +76,8 @@ class jupyterhub (
   Optional[String] $batchspawner_host,
   Optional[String] $batchspawner_runtime,
   Optional[String] $batchspawner_memory,
+  Optional[Boolean] $custom_packages_enable,
+  Optional[Array] $custom_packages,
 
 ) {
 
