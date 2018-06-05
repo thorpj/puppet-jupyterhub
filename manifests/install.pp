@@ -92,7 +92,7 @@ class jupyterhub::install {
   if $::jupyterhub::batchspawner_enable {
 
     python::pip { 'batchspawner':
-      pkgname    => 'jupyterhub-batchspawner',
+      pkgname    => 'batchspawner',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[$::jupyterhub::pyvenv],
