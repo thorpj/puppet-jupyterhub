@@ -41,3 +41,10 @@ jupyterhub::systemdspawner_isolate_devices: false
 jupyterhub::systemdspawner_isolate_tmp: false
 jupyterhub::systemdspawner_mem_limit: 'None'
 jupyterhub::systemdspawner_user_workingdir: /home/{USERNAME}
+jupyterhub::batchspawner_torque_enable: false
+jupyterhub::batchspawner_nprocs: ~
+jupyterhub::batchspawner_queue: ~
+jupyterhub::batchspawner_host: ~
+jupyterhub::batchspawner_runtime: ~
+jupyterhub::batchspawner_memory: ~
+
