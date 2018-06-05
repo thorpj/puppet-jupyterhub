@@ -49,6 +49,39 @@ c.SystemdSpawner.mem_limit = '<%= $jupyterhub::systemdspawner_mem_limit %>'
 c.SystemdSpawner.cpu_limit = '<%= $jupyterhub::systemdspawner_cpu_limit %>'
 <% } -%>
 
+<% if $jupyterhub::batchspawner_enable { -%>
+# batchspawner
+c.Spawner_class = 'batchspawner.TorqueSpawner'
+c.Spawner.http_timeout = 120
+------------------------------------------------------------------------------
+# BatchSpawnerBase configuration
+#    These are simply setting parameters used in the job script template below
+#------------------------------------------------------------------------------
+c.BatchSpawnerBase.req_nprocs = '$jupyterhub::batchspawner_nprocs'
+c.BatchSpawnerBase.req_queue = '$jupyterhub::batchspawner_queue'
+c.BatchSpawnerBase.req_host = '$jupyterhub::batchspawner_host'
+c.BatchSpawnerBase.req_runtime = '$jupyterhub::batchspawner_runtime'
+c.BatchSpawnerBase.req_memory = '$jupyterhub::batchspawner_memory'
+#------------------------------------------------------------------------------
+# TorqueSpawner configuration
+#    The script below is nearly identical to the default template, but we needed
+#    to add a line for our local environment. For most sites the default templates
+#    should be a good starting point.
+#------------------------------------------------------------------------------
+c.TorqueSpawner.batch_script = '''#!/bin/sh
+#PBS -q {queue}@{host}
+#PBS -l walltime={runtime}
+#PBS -l nodes=1:ppn={nprocs}
+#PBS -l mem={memory}
+#PBS -N jupyterhub-singleuser
+#PBS -v {keepvars}
+module load python3
+{cmd}
+'''
+<% } -%>
+
+
+
 <% if $jupyterhub::oauth_enable { -%>
 # oauth 
 <% if $jupyterhub::oauth_custom_enable { -%>
