@@ -53,6 +53,8 @@ jupyterhub::batchspawner_queue: ~
 jupyterhub::batchspawner_host: ~
 jupyterhub::batchspawner_runtime: ~
 jupyterhub::batchspawner_memory: ~
+jupyterhub::batchspawner_module_path: ~
+jupyterhub::batchspawner_module_python: ~
 jupyterhub::custom_packages_enable: false
 jupyterhub::custom_packages:
   - numpy

@@ -75,7 +75,10 @@ c.TorqueSpawner.batch_script = '''#!/bin/sh
 #PBS -l mem={memory}
 #PBS -N jupyterhub-singleuser
 #PBS -v {keepvars}
-module load python3
+#PBS -A {account}
+#PBS -l qos={qos}
+module use <%= $jupyterhub::batchspawner_module_path %>
+module load <%= $jupyterhub::batchspawner_module_python %>
 {cmd}
 '''
 <% } -%>
