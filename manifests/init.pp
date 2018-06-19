@@ -71,6 +71,8 @@ class jupyterhub (
   Optional[Boolean] $systemdspawner_isolate_tmp,
   Optional[Boolean] $systemdspawner_isolate_devices,
   Optional[Boolean] $batchspawner_enable,
+  Optional[Boolean] $batchspawner_commands_enable,
+  Optional[Array] $batchspawner_commands,
   Optional[Boolean] $batchspawner_torque_enable,
   Optional[Integer] $batchspawner_nprocs,
   Optional[String] $batchspawner_queue,
