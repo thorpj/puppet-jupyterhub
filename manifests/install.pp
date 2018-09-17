@@ -41,6 +41,12 @@ class jupyterhub::install {
     ensure     => present,
   }
 
+    ensure  => directory,
+    owner   => $::jupyterhub::jupyterhub_username,
+    recurse => true,
+    require => User[$::jupyterhub::jupyterhub_username],
+  }
+
   file { $::jupyterhub::jupyterhub_dir:
     ensure  => directory,
     owner   => $::jupyterhub::jupyterhub_username,

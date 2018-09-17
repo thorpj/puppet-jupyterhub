@@ -2,6 +2,7 @@
 jupyterhub::allowed_users: ~
 jupyterhub::base_url: /
 jupyterhub::cookie_secret_file: ~
+jupyterhub::config_dir: /etc/jupyter
 jupyterhub::epel_enable: true
 jupyterhub::debug_enable: false
 jupyterhub::ip: 127.0.0.1

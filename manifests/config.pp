@@ -9,7 +9,7 @@ class jupyterhub::config {
     owner  => $::jupyterhub::jupyterhub_username,
   }
 
-  file { "${::jupyterhub::jupyterhub_dir}/jupyterhub_config.py":
+  file { "${::jupyterhub::config_dir}/jupyterhub_config.py":
     owner   => $::jupyterhub::jupyterhub_username,
     content => epp("${module_name}/jupyterhub_config.py.epp"),
   }
