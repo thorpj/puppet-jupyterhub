@@ -64,6 +64,7 @@ class jupyterhub (
   Optional[Stdlib::Absolutepath] $systemdspawner_default_shell,
   Optional[Stdlib::Absolutepath] $systemdspawner_user_workingdir,
   Optional[Stdlib::Httpurl] $oauth_callback_url,
+  Optional[String] $batchspawner_command,
   Optional[String] $batchspawner_host,
   Optional[String] $batchspawner_memory,
   Optional[String] $batchspawner_module_python,

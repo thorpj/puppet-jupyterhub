@@ -30,7 +30,7 @@ class jupyterhub::install {
 
   case $facts['os']['family'] {
     'Debian': { ensure_packages(['python3.4-venv'], { before =>  Python::Pyvenv[$::jupyterhub::pyvenv]}) }
-    'RedHat': { ensure_packages(['python34'],  {
+    'RedHat': { ensure_packages(['python36'],  {
       require => Class['::epel'],
       before  => Python::Pyvenv[$::jupyterhub::pyvenv]})
     }

@@ -77,8 +77,7 @@ c.TorqueSpawner.batch_script = '''#!/bin/sh
 #PBS -v {keepvars}
 #PBS -A {account}
 #PBS -l qos={qos}
-module use <%= $jupyterhub::batchspawner_module_path %>
-module load <%= $jupyterhub::batchspawner_module_python %>
+<%= $jupyterhub::batchspawner_command %>
 {cmd}
 '''
 <% } -%>
