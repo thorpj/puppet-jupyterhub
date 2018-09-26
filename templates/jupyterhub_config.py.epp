@@ -76,7 +76,7 @@ c.TorqueSpawner.batch_script = '''#!/bin/sh
 #PBS -N jupyterhub-singleuser
 #PBS -v {keepvars}
 #PBS -A {account}
-#PBS -l qos={<%= $jupyterhub::batchspawner_qos %>}
+#PBS -l qos=<%= $jupyterhub::batchspawner_qos %>
 #PBS -o /$PBS_O_HOME/
 #PBS -e /$PBS_O_HOME/
 <%= $jupyterhub::batchspawner_command %>
