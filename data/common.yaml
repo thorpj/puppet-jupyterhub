@@ -5,7 +5,7 @@ jupyterhub::cookie_secret_file: ~
 jupyterhub::config_dir: /etc/jupyter
 jupyterhub::epel_enable: true
 jupyterhub::debug_enable: false
-jupyterhub::ip: 127.0.0.1
+jupyterhub::ip: "%{facts.networking.ip}"
 jupyterhub::jupyterhub_dir: /opt/jupyterhub
 jupyterhub::jupyterhub_group: 'jupyter'
 jupyterhub::jupyterhub_username: 'jupyter'
@@ -23,6 +23,7 @@ jupyterhub::oauth_github_client_secret: ~
 jupyterhub::oauth_github_enable: false
 jupyterhub::port: 7000
 jupyterhub::hub_port: 7001
+jupyterhub::hub_ip: "%{facts.networking.ip}"
 jupyterhub::proxy_api_port: ~
 jupyterhub::pyvenv: /opt/jupyterhub/pyvenv
 jupyterhub::python_version: 'system'

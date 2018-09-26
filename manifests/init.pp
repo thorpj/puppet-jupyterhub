@@ -30,6 +30,7 @@
 class jupyterhub (
   # Default values are in jupyterhub/data
   $ip,
+  Optional $hub_ip,
   Boolean $service_enable,
   Boolean $service_manage,
   Integer $port,
