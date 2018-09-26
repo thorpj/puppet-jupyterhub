@@ -110,7 +110,7 @@ class jupyterhub::install {
 
     python::pip { 'wrapspawner':
       url        => 'https://github.com/jupyterhub/wrapspawner',
-      pkgname    => 'batchspawner',
+      pkgname    => 'wrapspawner',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
       require    => Python::Pyvenv[$::jupyterhub::pyvenv],
