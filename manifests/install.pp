@@ -106,6 +106,17 @@ class jupyterhub::install {
     }
   }
 
+  if $::jupyterhub::wrapspawner_enable {
+
+    python::pip { 'wrapspawner':
+      url        => 'https://github.com/jupyterhub/wrapspawner',
+      pkgname    => 'batchspawner',
+      virtualenv => $::jupyterhub::pyvenv,
+      owner      => $::jupyterhub::jupyterhub_username,
+      require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+    }
+  }
+
   if $::jupyterhub::oauth_enable {
 
     python::pip { 'oauthenticator':

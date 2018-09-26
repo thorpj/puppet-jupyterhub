@@ -30,10 +30,10 @@
 class jupyterhub (
   # Default values are in jupyterhub/data
   $ip,
-  Optional $hub_ip,
   Boolean $service_enable,
   Boolean $service_manage,
   Integer $port,
+  Optional $hub_ip,
   Optional[Array[String]] $sudospawner_allowed_users,
   Optional[Array] $batchspawner_commands,
   Optional[Array] $custom_packages,
@@ -54,6 +54,7 @@ class jupyterhub (
   Optional[Boolean] $systemdspawner_enable,
   Optional[Boolean] $systemdspawner_isolate_devices,
   Optional[Boolean] $systemdspawner_isolate_tmp,
+  Optional[Boolean] $wrapspawner_enable,
   Optional[Integer] $batchspawner_nprocs,
   Optional[Integer] $hub_port,
   Optional[Integer] $proxy_api_port,

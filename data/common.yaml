@@ -61,6 +61,7 @@ jupyterhub::batchspawner_command: ~
 jupyterhub::batchspawner_memory: ~
 jupyterhub::batchspawner_module_path: ~
 jupyterhub::batchspawner_module_python: ~
+jupyterhub::wrapspawner_enable: false
 jupyterhub::custom_packages_enable: false
 jupyterhub::custom_packages:
   - numpy
