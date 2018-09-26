@@ -85,6 +85,7 @@ class jupyterhub (
   String $base_url,
   String $jupyterhub_group,
   String $jupyterhub_username,
+  String $python_version,
   String $service_name,
   Variant[Enum['running', 'stopped'], Boolean] $service_ensure,
 

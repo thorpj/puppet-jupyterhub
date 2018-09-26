@@ -56,7 +56,7 @@ class jupyterhub::install {
 
   python::pyvenv { $::jupyterhub::pyvenv:
     ensure  => present,
-    version => 'system',
+    version => $::jupyterhub::python_version,
     owner   => $::jupyterhub::jupyterhub_username,
     group   => $::jupyterhub::jupyterhub_group,
     require => File[$::jupyterhub::jupyterhub_dir],

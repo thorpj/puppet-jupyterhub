@@ -25,6 +25,7 @@ jupyterhub::port: 7000
 jupyterhub::hub_port: 7001
 jupyterhub::proxy_api_port: ~
 jupyterhub::pyvenv: /opt/jupyterhub/pyvenv
+jupyterhub::python_version: 'system'
 jupyterhub::service_enable: true
 jupyterhub::service_ensure: running
 jupyterhub::service_manage: true
