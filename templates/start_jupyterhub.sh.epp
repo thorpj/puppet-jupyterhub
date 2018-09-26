@@ -3,4 +3,4 @@
 # Managed by Puppet - manual changes will be overwritten. 
 
 . <%= $jupyterhub::pyvenv %>/bin/activate
-<%= $jupyterhub::pyvenv %>/bin/jupyterhub 
+<%= $jupyterhub::pyvenv %>/bin/jupyterhub --config=/etc/jupyter/jupyterhub_config.py
