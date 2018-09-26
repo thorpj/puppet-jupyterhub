@@ -52,6 +52,8 @@ jupyterhub::batchspawner_torque_enable: false
 jupyterhub::batchspawner_nprocs: ~
 jupyterhub::batchspawner_queue: ~
 jupyterhub::batchspawner_host: ~
+jupyterhub::batchspawner_node: '1'
+jupyterhub::batchspawner_qos: '{qos}'
 jupyterhub::batchspawner_runtime: ~
 jupyterhub::batchspawner_command: ~
 jupyterhub::batchspawner_memory: ~

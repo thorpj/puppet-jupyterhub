@@ -68,6 +68,8 @@ class jupyterhub (
   Optional[String] $batchspawner_host,
   Optional[String] $batchspawner_memory,
   Optional[String] $batchspawner_module_python,
+  Optional[String] $batchspawner_node,
+  Optional[String] $batchspawner_qos,
   Optional[String] $batchspawner_queue,
   Optional[String] $batchspawner_runtime,
   Optional[String] $oauth_client_id,

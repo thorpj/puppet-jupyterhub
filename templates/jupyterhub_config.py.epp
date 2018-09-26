@@ -71,12 +71,14 @@ c.BatchSpawnerBase.req_memory = '<%= $jupyterhub::batchspawner_memory %>'
 c.TorqueSpawner.batch_script = '''#!/bin/sh
 #PBS -q {queue}@{host}
 #PBS -l walltime={runtime}
-#PBS -l nodes=1:ppn={nprocs}
+#PBS -l nodes=<%= $jupyterhub::batchspawner_node %>:ppn={nprocs}
 #PBS -l mem={memory}
 #PBS -N jupyterhub-singleuser
 #PBS -v {keepvars}
 #PBS -A {account}
-#PBS -l qos={qos}
+#PBS -l qos={<%= $jupyterhub::batchspawner_qos %>}
+#PBS -o /$PBS_O_HOME/
+#PBS -e /$PBS_O_HOME/
 <%= $jupyterhub::batchspawner_command %>
 {cmd}
 '''
