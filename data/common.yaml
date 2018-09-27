@@ -27,6 +27,8 @@ jupyterhub::hub_ip: "%{facts.networking.ip}"
 jupyterhub::proxy_api_port: ~
 jupyterhub::pyvenv: /opt/jupyterhub/pyvenv
 jupyterhub::python_version: 'system'
+jupyterhub::reverse_proxy_enable: false
+jupyterhub::reverse_proxy_origin: []
 jupyterhub::service_enable: true
 jupyterhub::service_ensure: running
 jupyterhub::service_manage: true

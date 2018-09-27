@@ -114,3 +114,15 @@ c.GitHubOAuthenticator.client_secret = '<%= $jupyterhub::oauth_github_client_sec
 c.LocalAuthenticator.create_system_users = True
 <% } -%>
 <% } -%>
+
+<% if $jupyterhub::reverse_proxy_enable { -%>
+origin = <%= $jupyterhub::reverse_proxy_origin.join(', ') %>
+
+c.Spawner.args = ['--NotebookApp.allow_origin={origin}']
+c.JupyterHub.tornado_settings = {
+    'headers': {
+        'Access-Control-Allow-Origin': origin, 
+    },
+}
+
+<% } -%>
