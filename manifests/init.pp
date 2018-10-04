@@ -74,6 +74,7 @@ class jupyterhub (
   Optional[String] $batchspawner_memory,
   Optional[String] $batchspawner_module_python,
   Optional[String] $batchspawner_node,
+  Optional[String] $batchspawner_partition,
   Optional[String] $batchspawner_qos,
   Optional[String] $batchspawner_queue,
   Optional[String] $batchspawner_runtime,
