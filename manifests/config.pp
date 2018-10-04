@@ -5,11 +5,12 @@
 class jupyterhub::config {
 
   file { '/var/log/jupyterhub.log':
-    ensure => present,
+    ensure => file,
     owner  => $::jupyterhub::jupyterhub_username,
   }
 
   file { "${::jupyterhub::config_dir}/jupyterhub_config.py":
+    ensure  => file,
     owner   => $::jupyterhub::jupyterhub_username,
     content => epp("${module_name}/jupyterhub_config.py.epp"),
   }
@@ -17,12 +18,14 @@ class jupyterhub::config {
   if $::jupyterhub::sudospawner_enable {
 
     file { '/etc/sudoers.d/sudospawner':
+      ensure  => file,
       owner   => root,
       content => epp("${module_name}/jupyterhub_sudoers.epp"),
     }
   }
 
   file { "${::jupyterhub::jupyterhub_dir}/start_jupyterhub.sh":
+    ensure  => file,
     owner   => $::jupyterhub::jupyterhub_username,
     mode    => '0755',
     content => epp("${module_name}/start_jupyterhub.sh.epp"),
@@ -31,6 +34,7 @@ class jupyterhub::config {
   case $::initsystem {
     'sysvinit': {
       file { "/etc/init.d/${::jupyterhub::service_name}":
+        ensure  => file,
         owner   => 'root',
         mode    => '0755',
         content => epp("${module_name}/jupyterhub.init.epp"),
@@ -38,6 +42,7 @@ class jupyterhub::config {
     }
     'systemd': {
       file { "/etc/systemd/system/${::jupyterhub::service_name}.service":
+        ensure  => file,
         owner   => 'root',
         content => epp("${module_name}/jupyterhub.service.epp"),
       }
