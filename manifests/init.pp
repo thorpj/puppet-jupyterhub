@@ -32,6 +32,7 @@ class jupyterhub (
   $ip,
   Boolean $service_enable,
   Boolean $service_manage,
+  Enum['running', 'stopped'] $service_ensure,
   Integer $port,
   Optional $hub_ip,
   Optional[Array[String]] $sudospawner_allowed_users,
@@ -91,7 +92,6 @@ class jupyterhub (
   String $jupyterhub_username,
   String $python_version,
   String $service_name,
-  Variant[Enum['running', 'stopped'], Boolean] $service_ensure,
 
 ) {
 
