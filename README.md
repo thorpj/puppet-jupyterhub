@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/yorickps/puppet-jupyterhub.svg?branch=master)](https://travis-ci.org/yorickps/puppet-jupyterhub)
+[![Build Status](https://travis-ci.org/kuleuven/puppet-jupyterhub.svg?branch=master)](https://travis-ci.org/kuleuven/puppet-jupyterhub)
 
 #### Table of Contents
 
