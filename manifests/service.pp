@@ -6,10 +6,12 @@
 class jupyterhub::service {
 
   if $jupyterhub::service_manage == true {
-    service { $jupyterhub::service_name:
+    service { 'jupyterhub':
       ensure     => $jupyterhub::service_ensure,
       enable     => $jupyterhub::service_enable,
+      name       => $jupyterhub::service_name,
       hasrestart => true,
+      hasstatus  => true,
     }
   }
 }
