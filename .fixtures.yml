@@ -1,7 +1,6 @@
+# This file can be used to install module depdencies for unit testing
+# See https://github.com/puppetlabs/puppetlabs_spec_helper#using-fixtures for details
+---
 fixtures:
-  repositories:
-    stdlib: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
-    python: "https://github.com/stankevich/puppet-python.git"
-    nodejs: "https://github.com/voxpupuli/puppet-nodejs"
-  symlinks:
-    jupyterhub: "#{source_dir}"
+  forge_modules:
+#     stdlib: "puppetlabs/stdlib"
