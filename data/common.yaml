@@ -32,7 +32,7 @@ jupyterhub::reverse_proxy_origin: []
 jupyterhub::service_enable: true
 jupyterhub::service_ensure: running
 jupyterhub::service_manage: true
-jupyterhub::service_name: jupyterhub
+jupyterhub::service_name: 'jupyterhub'
 jupyterhub::ssl_enable: false
 jupyterhub::ssl_cert: ~
 jupyterhub::ssl_key: ~
