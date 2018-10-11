@@ -93,7 +93,6 @@ class jupyterhub (
   String $jupyterhub_username,
   String $python_version,
   String $service_name,
-
 ) {
 
   Class { '::jupyterhub::install': }
