@@ -8,7 +8,7 @@ c.JupyterHub.port = <%= $jupyterhub::port %>
 <% if $jupyterhub::hub_port { -%>
 c.JupyterHub.hub_port = <%= $jupyterhub::hub_port %>
 <% } -%>
-<% if $jupyterhub::hub_ip{ -%>
+<% if $jupyterhub::hub_ip { -%>
 c.JupyterHub.hub_ip = <%= $jupyterhub::hub_ip %>
 <% } -%>
 <% if $jupyterhub::proxy_api_port { -%>
