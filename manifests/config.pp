@@ -9,12 +9,6 @@ class jupyterhub::config {
     owner  => $jupyterhub::jupyterhub_username,
   }
 
-  file { $jupyterhub::config_dir:
-    ensure => directory,
-    owner  => $jupyterhub::jupyterhub_username,
-    group  => $jupyterhub::jupyterhub_username,
-  }
-
   file { "${jupyterhub::config_dir}/jupyterhub_config.py":
     ensure  => file,
     owner   => $jupyterhub::jupyterhub_username,
