@@ -18,7 +18,7 @@ class jupyterhub::config {
 
   if $jupyterhub::sudospawner_enable {
 
-    file { '/etc/sudoers.d/sudospawner':
+    file { '/etc/sudoers.d/jupyterhub_sudospawner':
       ensure  => file,
       owner   => root,
       content => epp("${module_name}/jupyterhub_sudoers.epp"),
