@@ -125,7 +125,7 @@ c.LocalAuthenticator.create_system_users = True
 
 <% if $jupyterhub::reverse_proxy_enable { -%>
 # reverse proxy origin
-origin = <%= $jupyterhub::reverse_proxy_origin.join(', ') %>
+origin = '<%= $jupyterhub::reverse_proxy_origin.join(', ') %>'
 
 c.Spawner.args = ['--NotebookApp.allow_origin={origin}']
 c.JupyterHub.tornado_settings = {
