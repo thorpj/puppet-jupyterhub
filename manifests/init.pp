@@ -30,11 +30,11 @@
 class jupyterhub (
   # Default values are in jupyterhub/data
   $ip,
+  $hub_ip,
   Boolean $service_enable,
   Boolean $service_manage,
   Enum['running', 'stopped'] $service_ensure,
   Integer $port,
-  Optional $hub_ip,
   Optional[Array[String]] $sudospawner_allowed_users,
   Optional[Array] $batchspawner_commands,
   Optional[Array] $custom_packages,
