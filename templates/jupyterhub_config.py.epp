@@ -8,9 +8,11 @@ c.JupyterHub.port = <%= $jupyterhub::port %>
 <% if $jupyterhub::hub_port { -%>
 c.JupyterHub.hub_port = <%= $jupyterhub::hub_port %>
 <% } -%>
+
 <% if $jupyterhub::hub_ip { -%>
 c.JupyterHub.hub_ip = <%= $jupyterhub::hub_ip %>
 <% } -%>
+
 <% if $jupyterhub::proxy_api_port { -%>
 c.JupyterHub.proxy_api_port = '<%= $jupyterhub::proxy_api_port %>'
 <% } -%>
@@ -90,7 +92,7 @@ c.TorqueSpawner.batch_script = '''#!/bin/sh
 
 
 <% if $jupyterhub::oauth_enable { -%>
-# oauth 
+# Oauth 
 <% if $jupyterhub::oauth_custom_enable { -%>
 # Custom oauth provider
 import <%= $jupyterhub::oauth_full_name %>
@@ -116,6 +118,7 @@ c.LocalAuthenticator.create_system_users = True
 <% } -%>
 
 <% if $jupyterhub::reverse_proxy_enable { -%>
+# reverse proxy origin
 origin = <%= $jupyterhub::reverse_proxy_origin.join(', ') %>
 
 c.Spawner.args = ['--NotebookApp.allow_origin={origin}']
