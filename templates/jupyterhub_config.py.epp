@@ -90,6 +90,12 @@ c.TorqueSpawner.batch_script = '''#!/bin/sh
 '''
 <% } -%>
 
+<% if $jupyterhub::wrapspawner_enable { -%>
+# ProfileSpawner
+c.JupyterHub.spawner_class = 'wrapspawner.ProfilesSpawner'
+c.Spawner.http_timeout = 120
+c.ProfilesSpawner.profiles = []
+<% } -%>
 
 <% if $jupyterhub::oauth_enable { -%>
 # Oauth 
