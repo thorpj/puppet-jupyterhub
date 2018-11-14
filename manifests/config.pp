@@ -9,11 +9,14 @@ class jupyterhub::config {
     owner  => $jupyterhub::jupyterhub_username,
   }
 
-  file { "${jupyterhub::config_dir}/jupyterhub_config.py":
-    ensure  => file,
-    owner   => $jupyterhub::jupyterhub_username,
-    content => epp("${module_name}/jupyterhub_config.py.epp"),
-    require => File[$jupyterhub::config_dir],
+  if $jupyterhub::manage_config {
+
+    file { "${jupyterhub::config_dir}/jupyterhub_config.py":
+      ensure  => file,
+      owner   => $jupyterhub::jupyterhub_username,
+      content => epp("${module_name}/jupyterhub_config.py.epp"),
+      require => File[$jupyterhub::config_dir],
+    }
   }
 
   if $jupyterhub::sudospawner_enable {

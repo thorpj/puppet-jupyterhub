@@ -45,6 +45,7 @@ class jupyterhub (
   Optional[Boolean] $custom_packages_enable,
   Optional[Boolean] $debug_enable,
   Optional[Boolean] $epel_enable,
+  Optional[Boolean] $manage_config,
   Optional[Boolean] $manage_git,
   Optional[Boolean] $oauth_create_system_users,
   Optional[Boolean] $oauth_custom_enable,

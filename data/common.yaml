@@ -9,6 +9,7 @@ jupyterhub::ip: "%{facts.networking.ip}"
 jupyterhub::jupyterhub_dir: /opt/jupyterhub
 jupyterhub::jupyterhub_group: 'jupyter'
 jupyterhub::jupyterhub_username: 'jupyter'
+jupyterhub::manage_config: true
 jupyterhub::manage_git: true
 jupyterhub::oauth_callback_url: ~
 jupyterhub::oauth_client_id: ~
