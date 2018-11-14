@@ -79,7 +79,7 @@ c.TorqueSpawner.batch_script = '''#!/bin/sh
 #PBS -l nodes=<%= $jupyterhub::batchspawner_node %>:ppn={nprocs}
 #PBS -l mem={memory}
 #PBS -l partition=<%= $jupyterhub::batchspawner_partition %>
-#PBS -N jupyterhub-singleuser
+#PBS -N jupyterhub-{username}
 #PBS -v {keepvars}
 #PBS -A {account}
 #PBS -l qos=<%= $jupyterhub::batchspawner_qos %>
