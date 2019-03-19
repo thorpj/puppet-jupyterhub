@@ -28,6 +28,15 @@ class jupyterhub::config {
     }
   }
 
+  if $jupyterhub::batchspawner_enable {
+
+    file { '/etc/sudoers.d/jupyterhub_batch':
+      ensure  => file,
+      owner   => root,
+      content => epp("${module_name}/jupyterhub_batch.epp"),
+    }
+  }
+
   file { "${jupyterhub::jupyterhub_dir}/start_jupyterhub.sh":
     ensure  => file,
     owner   => $jupyterhub::jupyterhub_username,
