@@ -35,7 +35,7 @@ class jupyterhub (
   Boolean $service_manage,
   Enum['running', 'stopped'] $service_ensure,
   Integer $port,
-  Optional[Array[String]] $batchspawner_alllwed_users,
+  Optional[Array[String]] $batchspawner_allowed_users,
   Optional[Array[String]] $sudospawner_allowed_users,
   Optional[Array] $authenticator_admin_users,
   Optional[Array] $batchspawner_commands,
