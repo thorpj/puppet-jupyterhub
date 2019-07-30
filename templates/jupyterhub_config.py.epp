@@ -13,6 +13,42 @@ c.JupyterHub.hub_port = <%= $jupyterhub::hub_port %>
 c.JupyterHub.hub_ip = '<%= $jupyterhub::hub_ip %>'
 <% } -%>
 
+<% if $jupyterhub::admin_access { -%>
+c.JupyterHub.admin_access = '<%= $jupyterhub::admin_access %>'
+<% } -%>
+
+<% if $jupyterhub::authenticator_admin_users { -%>
+c.Authenticator.admin_users = '<%= $jupyterhub::authenticator_admin_users %>'
+<% } -%>
+
+<% if $jupyterhub::cleanup_proxy { -%>
+c.JupyterHub.cleanup_proxy = '<%= $jupyterhub::cleanup_proxy %>'
+<% } -%>
+
+<% if $jupyterhub::cleanup_servers { -%>
+c.JupyterHub.cleanup_servers = '<%= $jupyterhub::cleanup_servers %>'
+<% } -%>
+
+<% if $jupyterhub::spawner_cmd { -%>
+c.Spawner.cmd = '<%= $jupyterhub::spawner_cmd %>'
+<% } -%>
+
+<% if $jupyterhub::spawner_default_url { -%>
+c.Spawner.default_url = '<%= $jupyterhub::spawner_default_url %>'
+<% } -%>
+
+<% if $jupyterhub::spawner_notebook_dir { -%>
+c.Spawner.notebook_dir = '<%= $jupyterhub::spawner_notebook_dir %>'
+<% } -%>
+
+<% if $jupyterhub::kernelrestarter_restart_limit { -%>
+c.KernelRestarter.restart_limit = '<%= $jupyterhub::kernelrestarter_restart_limit %>'
+<% } -%>
+
+<% if $jupyterhub::kernelmanager_autorestart { -%>
+c.KernelManager.autorestart = '<%= $jupyterhub::kernelmanager_autorestart %>'
+<% } -%>
+
 <% if $jupyterhub::proxy_api_port { -%>
 c.JupyterHub.proxy_api_port = '<%= $jupyterhub::proxy_api_port %>'
 <% } -%>
@@ -125,7 +161,7 @@ c.LocalAuthenticator.create_system_users = True
 
 <% if $jupyterhub::reverse_proxy_enable { -%>
 # reverse proxy origin
-origin = '<%= $jupyterhub::reverse_proxy_origin.join(', ') %>'
+origin = '<%= join($jupyterhub::reverse_proxy_origin,", ") %>'
 
 c.Spawner.args = ['--NotebookApp.allow_origin={origin}']
 c.JupyterHub.tornado_settings = {

@@ -71,3 +71,22 @@ jupyterhub::custom_packages:
   - numpy
   - scipy
   - matplotlib
+
+jupyterhub::admin_access: false
+jupyterhub::cleanup_proxy: false
+jupyterhub::cleanup_servers: false
+jupyterhub::spawner_cmd: ~
+juypterhub::spawner_default_url: ~
+jupyterhub::spawner_notebook_dir: ~
+jupyterhub::authenticator_admin_users: []
+jupyterhub::kernelrestarter_restart_limit: ~
+jupyterhub::kernelmanager_autorestart: true
+
+c.JupyterHub.cleanup_proxy = True
+c.JupyterHub.cleanup_servers = False
+c.Spawner.cmd = ['jupyter-labhub']
+c.Spawner.default_url = '/lab/tree/home/luna.kuleuven.be/{username}/data/jupyternotebooks'
+c.Spawner.notebook_dir = "/"
+c.Authenticator.admin_users = set(["u0094113", "u0079808"])
+c.KernelRestarter.restart_limit = 3
+c.KernelManager.autorestart = False
