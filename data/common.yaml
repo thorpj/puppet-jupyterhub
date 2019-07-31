@@ -48,6 +48,7 @@ jupyterhub::systemdspawner_isolate_tmp: false
 jupyterhub::systemdspawner_mem_limit: 'None'
 jupyterhub::systemdspawner_user_workingdir: /home/{USERNAME}
 jupyterhub::batchspawner_enable: false
+jupyterhub::batchspawner_allowed_users: []
 jupyterhub::batchspawner_commands_enable: false
 jupyterhub::batchspawner_commands:
   - '/usr/bin/qsub'
@@ -76,7 +77,7 @@ jupyterhub::admin_access: false
 jupyterhub::cleanup_proxy: false
 jupyterhub::cleanup_servers: false
 jupyterhub::spawner_cmd: ~
-juypterhub::spawner_default_url: ~
+jupyterhub::spawner_default_url: ~
 jupyterhub::spawner_notebook_dir: ~
 jupyterhub::authenticator_admin_users: []
 jupyterhub::kernelrestarter_restart_limit: ~
