@@ -18,7 +18,8 @@ class jupyterhub::install {
     }
     }
     'CentOS':{ class { '::nodejs':
-      repo_url_suffix => '6.x', }
+      repo_url_suffix       => '8.x',
+      nodejs_package_ensure => '8.16.0', }
     }
     default: { class { '::nodejs': }
     }
@@ -151,5 +152,11 @@ class jupyterhub::install {
     ensure   => 'present',
     provider => 'npm',
     require  =>  Class['::nodejs'],
+  }
+
+  file { '/usr/lib/node_modules/configurable-http-proxy':
+    ensure  => directory,
+    recurse => true,
+    mode    => 'a+Xr',
   }
 }
