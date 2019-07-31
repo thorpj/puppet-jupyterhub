@@ -45,8 +45,8 @@ c.Spawner.notebook_dir = '<%= $jupyterhub::spawner_notebook_dir %>'
 c.KernelRestarter.restart_limit = '<%= $jupyterhub::kernelrestarter_restart_limit %>'
 <% } -%>
 
-<% if $jupyterhub::kernelmanager_autorestart { -%>
-c.KernelManager.autorestart = '<%= $jupyterhub::kernelmanager_autorestart %>'
+<% if $jupyterhub::kernelmanager_autorestart == 'false' { -%>
+c.KernelManager.autorestart = False
 <% } -%>
 
 <% if $jupyterhub::proxy_api_port { -%>
