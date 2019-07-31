@@ -114,7 +114,7 @@ jupyterhub::ssl_enable: false
 jupyterhub::ssl_key: ~
 jupyterhub::sudospawner_allowed_users: []
 jupyterhub::sudospawner_debug_enable: false
-jupyterhub::sudospawner_enable: true
+jupyterhub::sudospawner_enable: false
 jupyterhub::systemdspawner_cpu_limit: 'None'
 jupyterhub::systemdspawner_default_shell: ~
 jupyterhub::systemdspawner_enable: false

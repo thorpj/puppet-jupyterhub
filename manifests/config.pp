@@ -9,7 +9,7 @@ class jupyterhub::config {
     owner  => $jupyterhub::jupyterhub_username,
   }
 
-  if $jupyterhub::manage_config {
+  if $jupyterhub::manage_config == true {
 
     file { "${jupyterhub::config_dir}/jupyterhub_config.py":
       ensure  => file,
@@ -19,7 +19,7 @@ class jupyterhub::config {
     }
   }
 
-  if $jupyterhub::sudospawner_enable {
+  if $jupyterhub::sudospawner_enable == true {
 
     file { '/etc/sudoers.d/jupyterhub_sudospawner':
       ensure  => file,
@@ -28,7 +28,7 @@ class jupyterhub::config {
     }
   }
 
-  if $jupyterhub::batchspawner_enable {
+  if $jupyterhub::batchspawner_enable == true {
 
     file { '/etc/sudoers.d/jupyterhub_batch':
       ensure  => file,

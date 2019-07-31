@@ -76,7 +76,7 @@ class jupyterhub::install {
     require    => Python::Pyvenv[$::jupyterhub::pyvenv],
   }
 
-  if $::jupyterhub::sudospawner_enable {
+  if $::jupyterhub::sudospawner_enable == true {
 
     python::pip { 'sudospawner':
       pkgname    => 'sudospawner',
@@ -86,7 +86,7 @@ class jupyterhub::install {
     }
   }
 
-  if $::jupyterhub::systemdspawner_enable {
+  if $::jupyterhub::systemdspawner_enable == true {
 
     python::pip { 'systemdspawner':
       pkgname    => 'jupyterhub-systemdspawner',
@@ -96,7 +96,7 @@ class jupyterhub::install {
     }
   }
 
-  if $::jupyterhub::batchspawner_enable {
+  if $::jupyterhub::batchspawner_enable == true {
 
     python::pip { 'batchspawner':
       pkgname    => 'batchspawner',
@@ -106,7 +106,7 @@ class jupyterhub::install {
     }
   }
 
-  if $::jupyterhub::wrapspawner_enable {
+  if $::jupyterhub::wrapspawner_enable == true {
 
     python::pip { 'wrapspawner':
       url        => 'https://github.com/jupyterhub/wrapspawner',
@@ -117,7 +117,7 @@ class jupyterhub::install {
     }
   }
 
-  if $::jupyterhub::oauth_enable {
+  if $::jupyterhub::oauth_enable == true {
 
     python::pip { 'oauthenticator':
       pkgname    => 'oauthenticator',
@@ -134,7 +134,7 @@ class jupyterhub::install {
     }
   }
 
-  if $::jupyterhub::custom_packages_enable {
+  if $::jupyterhub::custom_packages_enable == true {
 
     $jupyterhub::custom_packages.each |String $custom_package | {
 
