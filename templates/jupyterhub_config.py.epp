@@ -20,7 +20,7 @@ c.JupyterHub.admin_access = False
 <% } -%>
 
 <% if $jupyterhub::authenticator_admin_users { -%>
-c.Authenticator.admin_users = set([<% $jupyterhub::authenticator_admin_users.each |$admin_user| { -%> <%= "'$admin_user', "-%> <% } -%>])
+c.Authenticator.admin_users = set(['<%= $jupyterhub::authenticator_admin_users.join("','") %>'])
 <% } -%>
 
 <% if $jupyterhub::cleanup_proxy { -%>
