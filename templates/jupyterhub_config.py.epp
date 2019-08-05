@@ -88,6 +88,7 @@ c.SudoSpawner.debug_mediator = True
 <% if $jupyterhub::systemdspawner_enable { -%>
 # systemdspawner 
 c.SystemdSpawner.spawner_class='systemdspawner.SystemdSpawner'
+c.SystemdSpawner.dynamic_users = True
 c.SystemdSpawner.user_workingdir = '<%= $jupyterhub::systemdspawner_user_workingdir %>'
 c.SystemdSpawner.default_shell = '<%= $jupyterhub::systemdspawner_default_shell %>'
 c.SystemdSpawner.unit_name_template = 'jupyter-{USERNAME}-singleuser'
