@@ -25,6 +25,7 @@ class jupyterhub::config {
       ensure  => file,
       owner   => root,
       content => epp("${module_name}/jupyterhub_sudoers.epp"),
+      mode    => '0440',
     }
   }
 
@@ -34,6 +35,7 @@ class jupyterhub::config {
       ensure  => file,
       owner   => root,
       content => epp("${module_name}/jupyterhub_batch.epp"),
+      mode    => '0440',
     }
   }
 
