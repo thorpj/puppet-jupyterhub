@@ -72,7 +72,7 @@ jupyterhub::custom_packages:
   - numpy
   - scipy
   - matplotlib
-
+  - pycurl
 jupyterhub::admin_access: false
 jupyterhub::cleanup_proxy: false
 jupyterhub::cleanup_servers: false
