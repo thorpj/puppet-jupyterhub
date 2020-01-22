@@ -4,7 +4,7 @@ Description=Jupyterhub
 
 [Service]
 ExecStart=<%= $jupyterhub::pyvenv %>/bin/jupyterhub --config=<%= $jupyterhub::config_dir %>/jupyterhub_config.py
-WorkingDirectory=<%= $jupyterhub::pyvenv %>
+WorkingDirectory=<%= $jupyterhub::jupyterhub_dir %>
 Environment=PATH=<%= $jupyterhub::pyvenv %>/bin:$PATH
 User=<%= $jupyterhub::jupyterhub_username %>
 
