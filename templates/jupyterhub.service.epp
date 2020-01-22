@@ -3,8 +3,9 @@
 Description=Jupyterhub
 
 [Service]
-ExecStart=<%= $jupyterhub::jupyterhub_dir %>/start_jupyterhub.sh
-WorkingDirectory=<%= $jupyterhub::jupyterhub_dir %>
+ExecStart=<%= $jupyterhub::pyvenv %>/bin/jupyterhub --config=<%= $jupyterhub::config_dir %>/jupyterhub_config.py
+WorkingDirectory=<%= $jupyterhub::pyvenv %>
+Environment=PATH=<%= $jupyterhub::pyvenv %>/bin:$PATH
 User=<%= $jupyterhub::jupyterhub_username %>
 
 [Install]
