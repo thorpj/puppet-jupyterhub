@@ -40,6 +40,7 @@ class jupyterhub::install {
 
   user { $::jupyterhub::jupyterhub_username:
     ensure     => present,
+    managehome => true,
   }
 
   file { $::jupyterhub::config_dir:
@@ -61,6 +62,14 @@ class jupyterhub::install {
     owner   => $::jupyterhub::jupyterhub_username,
     group   => $::jupyterhub::jupyterhub_group,
     require => File[$::jupyterhub::jupyterhub_dir],
+  }
+
+  python::pip { 'pip':
+    ensure     => 'latest',
+    pkgname    => 'pip',
+    virtualenv => $::jupyterhub::pyvenv,
+    owner      => $::jupyterhub::jupyterhub_username,
+    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
   }
 
   python::pip { 'jupyter':
@@ -114,7 +123,7 @@ class jupyterhub::install {
       pkgname    => 'wrapspawner',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
-      require    => Python::Pyvenv[$::jupyterhub::pyvenv],
+      require    => Python::Pip['pip'],
     }
   }
 
