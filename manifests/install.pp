@@ -64,14 +64,6 @@ class jupyterhub::install {
     require => File[$::jupyterhub::jupyterhub_dir],
   }
 
-  python::pip { 'pip':
-    ensure     => 'latest',
-    pkgname    => 'pip',
-    virtualenv => $::jupyterhub::pyvenv,
-    owner      => $::jupyterhub::jupyterhub_username,
-    require    => Python::Pyvenv[$::jupyterhub::pyvenv],
-  }
-
   python::pip { 'jupyter':
     pkgname    => 'jupyter',
     virtualenv => $::jupyterhub::pyvenv,
@@ -123,7 +115,7 @@ class jupyterhub::install {
       pkgname    => 'wrapspawner',
       virtualenv => $::jupyterhub::pyvenv,
       owner      => $::jupyterhub::jupyterhub_username,
-      require    => Python::Pip['pip'],
+      require    => Python::Pyvenv[$::jupyterhub::pyvenv],
     }
   }
 
