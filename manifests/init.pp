@@ -78,7 +78,7 @@ class jupyterhub (
   Optional[Stdlib::Absolutepath] $ssl_key,
   Optional[Stdlib::Absolutepath] $systemdspawner_default_shell,
   Optional[Stdlib::Absolutepath] $systemdspawner_user_workingdir,
-  Optional[Stdlib::Absolutpath] $cfhproxy_command,
+  Optional[Stdlib::Absolutepath] $cfhproxy_command,
   Optional[Stdlib::Httpurl] $oauth_callback_url,
   Optional[String] $batchspawner_command,
   Optional[String] $batchspawner_host,
