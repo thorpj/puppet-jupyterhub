@@ -19,7 +19,7 @@ class jupyterhub::install {
     }
     'CentOS':{ class { '::nodejs':
       repo_url_suffix       => '13.x',
-      nodejs_package_ensure => '13.6.0', }
+      nodejs_package_ensure => '13.8.0', }
     }
     default: { class { '::nodejs': }
     }
