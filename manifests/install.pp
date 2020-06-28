@@ -154,8 +154,7 @@ class jupyterhub::install {
     provider => 'npm',
     require  =>  Class['::nodejs'],
   }
-
-  file { '/usr/local/lib/node_modules/configurable-http-proxy':
+  -> file { '/usr/local/lib/node_modules/configurable-http-proxy':
     ensure  => directory,
     recurse => true,
     mode    => 'a+Xr',
