@@ -1,7 +1,7 @@
 ---
 jupyterhub::allowed_users: ~
 jupyterhub::base_url: /
-jupyterhub::cfhproxy_command: '/usr/lib/node_modules/configurable-http-proxy/bin/configurable-http-proxy'
+jupyterhub::cfhproxy_command: '/usr/local/lib/node_modules/configurable-http-proxy/bin/configurable-http-proxy'
 jupyterhub::cfhproxy_should_start: true
 jupyterhub::cfhproxy_auth_token: ~
 jupyterhub::cookie_secret_file: ~
