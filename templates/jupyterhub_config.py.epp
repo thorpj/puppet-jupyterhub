@@ -18,7 +18,7 @@ c.JupyterHub.admin_access = True
 c.JupyterHub.admin_access = False
 <% } -%>
 
-<% if $jupyterhub::authenticator_admin_users { -%>
+<% if $jupyterhub::authenticator_admin_users.size > 0 { -%>
 c.Authenticator.admin_users = set(['<%= $jupyterhub::authenticator_admin_users.join("','") %>'])
 <% } -%>
 
